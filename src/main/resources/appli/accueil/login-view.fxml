@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="382.0" prefWidth="255.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.accueil.LoginController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Label text="Bienvenue !">
+        <font>
+            <Font name="Arial Bold" size="15.0" />
+        </font>
+    </Label>
+    <Label text="votre email :">
+        <font>
+            <Font name="Arial" size="12.0" />
+        </font>
+    </Label>
+    <TextField fx:id="email" alignment="CENTER" promptText="adresse@gmail.com" />
+    <Label text="votre mot de passe :" />
+    <PasswordField fx:id="mdp" alignment="CENTER" promptText="Aa1234567!" />
+    <Label fx:id="erreur" textFill="RED">
+        <font>
+            <Font name="Arial Bold" size="12.0" />
+        </font></Label>
+    <Button fx:id="connexion" text="connexion" />
+    <Button fx:id="oubliemdp" text="mot de passe oublié" />
+    <Button fx:id="inscription" mnemonicParsing="false" text="inscription" />
+
+
+</VBox>

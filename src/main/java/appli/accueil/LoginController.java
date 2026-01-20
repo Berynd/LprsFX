@@ -1,9 +1,9 @@
-package appli.lprsfx;
+package appli.accueil;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class LoginController {
     @FXML
     private Label welcomeText;
 
