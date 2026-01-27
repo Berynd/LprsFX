@@ -11,6 +11,9 @@ module appli.lprsfx {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires spring.security.crypto;
+    requires javafx.base;
+    requires appli.lprsfx;
 
     opens appli to javafx.fxml;
     exports appli;
