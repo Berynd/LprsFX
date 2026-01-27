@@ -10,7 +10,13 @@ module appli.lprsfx {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
-    opens appli.lprsfx to javafx.fxml;
-    exports appli.lprsfx;
+    opens appli to javafx.fxml;
+    exports appli;
+
+    opens appli.accueil to javafx.fxml;
+    exports appli.accueil;
+
+
 }

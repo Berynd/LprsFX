@@ -14,9 +14,9 @@ public class Database {
     public static void main(String[] args) {
         Connection cnx = getConnexion();
         if (cnx != null) {
-            System.out.println("Connexion établie avec succès !");
+            System.out.println("Connection successful !");
         } else {
-            System.out.println("Échec de la connexion à la base de données.");
+            System.out.println("Connection failed !");
         }
     }
 
@@ -24,9 +24,9 @@ public class Database {
         Connection cnx = null;
         try {
             cnx = DriverManager.getConnection(getUrl(), UTILISATEUR, MOT_DE_PASSE);
-            System.out.println("Connexion réussie à la base de données !");
+            System.out.println("Connection successful !");
         } catch (SQLException e) {
-            System.out.println("Erreur de connexion : " + e.getMessage());
+            System.out.println("Connection error : " + e.getMessage());
         }
         return cnx;
     }
