@@ -13,7 +13,7 @@ module appli.lprsfx {
     requires java.sql;
     requires spring.security.crypto;
     requires javafx.base;
-    requires appli.lprsfx;
+
 
     opens appli to javafx.fxml;
     exports appli;
