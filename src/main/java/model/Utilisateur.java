@@ -8,7 +8,7 @@ public class Utilisateur {
     private String nom;
     private String prenom;
     private String email;
-    private String motDePasse;
+    private String mdp;
     private String role;
     private String derniereConnexion;
     private int refFiliere;
@@ -53,12 +53,12 @@ public class Utilisateur {
         this.role = role;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getmdp() {
+        return mdp;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
+    public void setmdp(String mdp) {
+        this.mdp = mdp;
     }
 
     public int getRefFiliere() {
@@ -78,21 +78,21 @@ public class Utilisateur {
     }
 
 
-    public Utilisateur(int idUtilisateur,  String nom, String prenom,String email,String motDePasse, String role) {
+    public Utilisateur(int idUtilisateur,  String nom, String prenom,String email,String mdp, String role) {
         this.idUtilisateur = idUtilisateur;
         this.role = role;
-        this.motDePasse = motDePasse;
+        this.mdp = mdp;
         this.email = email;
         this.prenom = prenom;
         this.nom = nom;
     }
 
-    public Utilisateur(String nom, String prenom, String email, String motDePasse,String role) {
+    public Utilisateur(String nom, String prenom, String email, String mdp,String role) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.role = role;
-        this.motDePasse = motDePasse;
+        this.mdp = mdp;
     }
     public Utilisateur(int idUtilisateur,String nom, String prenom, String email) {
         this.idUtilisateur = idUtilisateur;
@@ -102,9 +102,9 @@ public class Utilisateur {
 
     }
 
-    public Utilisateur(String email, String motDePasse) {
+    public Utilisateur(String email, String mdp) {
         this.email = email;
-        this.motDePasse = motDePasse;
+        this.mdp = mdp;
     }
 
     @Override
@@ -114,7 +114,7 @@ public class Utilisateur {
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
-                ", motDePasse='" + motDePasse + '\'' +
+                ", mdp='" + mdp + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }
