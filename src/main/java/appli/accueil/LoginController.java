@@ -107,7 +107,7 @@ public class LoginController {
                 case "Professeur":
                     // TODO: Remplacer par la vraie page
                     System.out.println("Redirection vers interface Professeur");
-                    // StartApplication.changeScene("professeur/Accueil");
+                    StartApplication.changeScene("accueil/Accueil");
                     break;
                     
                 case "Gestionnaire de stock":
@@ -119,7 +119,7 @@ public class LoginController {
                 case "Admin":
                     // TODO: Remplacer par la vraie page
                     System.out.println("Redirection vers interface Admin");
-                    // StartApplication.changeScene("admin/Accueil");
+                    StartApplication.changeScene("accueil/Accueil");
                     break;
                     
                 default:
