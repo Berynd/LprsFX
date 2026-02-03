@@ -10,6 +10,10 @@ public class DossierInscription {
     private int RefEtudiant;
     private int RefSecretaire;
 
+    public DossierInscription(int idDossierInscription) {
+        IdDossierInscription = idDossierInscription;
+    }
+
     public int getIdDossierInscription() {
         return IdDossierInscription;
     }
@@ -64,5 +68,18 @@ public class DossierInscription {
 
     public void setRefSecretaire(int refSecretaire) {
         RefSecretaire = refSecretaire;
+    }
+
+    @Override
+    public String toString() {
+        return "DossierInscription{" +
+                "IdDossierInscription=" + IdDossierInscription +
+                ", dateCreation='" + dateCreation + '\'' +
+                ", motivation='" + motivation + '\'' +
+                ", statut='" + statut + '\'' +
+                ", RefFiliere=" + RefFiliere +
+                ", RefEtudiant=" + RefEtudiant +
+                ", RefSecretaire=" + RefSecretaire +
+                '}';
     }
 }

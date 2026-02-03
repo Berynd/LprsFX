@@ -20,4 +20,12 @@ public class Filiere {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    @Override
+    public String toString() {
+        return "Filiere{" +
+                "IdFiliere=" + IdFiliere +
+                ", nom='" + nom + '\'' +
+                '}';
+    }
 }

@@ -56,4 +56,16 @@ public class Rdv {
     public void setDate(String date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Rdv{" +
+                "IdRdv=" + IdRdv +
+                ", date='" + date + '\'' +
+                ", demiJournee='" + demiJournee + '\'' +
+                ", RefEtudiant=" + RefEtudiant +
+                ", RefProfesseur=" + RefProfesseur +
+                ", RefSalle=" + RefSalle +
+                '}';
+    }
 }
