@@ -1,6 +1,6 @@
 package model;
 
-public class rdv {
+public class Rdv {
 
     private int IdRdv;
     private String date;
