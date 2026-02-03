@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import model.Fournisseur;
 import repository.FournisseurRepository;
@@ -22,6 +21,7 @@ public class FournisseurController {
     @FXML private Button modifierBtn;
     @FXML private Button supprimerBtn;
     @FXML private Button annulerBtn;
+    @FXML private Button retourBtn;
     
     @FXML private TableView<Fournisseur> fournisseurTableView;
     @FXML private TableColumn<Fournisseur, Integer> idColumn;
@@ -38,16 +38,31 @@ public class FournisseurController {
         fournisseurRepository = new FournisseurRepository();
         fournisseursList = FXCollections.observableArrayList();
         
-        // Configuration des colonnes
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("idFournisseur"));
-        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        contactColumn.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        // Configuration des colonnes AVEC LAMBDA
+        idColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getIdFournisseur()).asObject()
+        );
+        
+        nomColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNom())
+        );
+        
+        contactColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getContact())
+        );
         
         // Ajouter des boutons d'action dans la colonne
         ajouterBoutonsActions();
         
         // Charger les données
         chargerDonnees();
+        
+        // Debug : afficher le nombre de fournisseurs chargés
+        System.out.println("=== DEBUG FOURNISSEURS ===");
+        System.out.println("Nombre de fournisseurs chargés : " + fournisseursList.size());
+        for (Fournisseur f : fournisseursList) {
+            System.out.println("Fournisseur : ID=" + f.getIdFournisseur() + ", Nom=" + f.getNom() + ", Contact=" + f.getContact());
+        }
         
         // Listener sur la sélection
         fournisseurTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -208,6 +223,8 @@ public class FournisseurController {
         afficherSucces("Données actualisées !");
     }
 
+
+
     private void chargerDonnees() {
         fournisseursList.setAll(fournisseurRepository.getTousLesFournisseurs());
         fournisseurTableView.setItems(fournisseursList);
@@ -245,5 +262,12 @@ public class FournisseurController {
     private void afficherSucces(String message) {
         messageLabel.setStyle("-fx-text-fill: #27ae60;");
         messageLabel.setText("✅ " + message);
+    }
+
+    @FXML
+    private void handleRetour() {
+        // Fermer la fenêtre actuelle
+        javafx.stage.Stage stage = (javafx.stage.Stage) retourBtn.getScene().getWindow();
+        stage.close();
     }
 }

@@ -21,6 +21,7 @@ public class SalleController {
     @FXML private Button modifierBtn;
     @FXML private Button supprimerBtn;
     @FXML private Button annulerBtn;
+    @FXML private Button retourBtn;
     
     @FXML private TableView<Salle> salleTableView;
     @FXML private TableColumn<Salle, Integer> idColumn;
@@ -36,15 +37,26 @@ public class SalleController {
         salleRepository = new SalleRepository();
         sallesList = FXCollections.observableArrayList();
         
-        // Configuration des colonnes
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("idSalle"));
-        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        // Configuration des colonnes AVEC LAMBDA (plus fiable)
+        idColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getIdSalle()).asObject()
+        );
+        
+        nomColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNom())
+        );
         
         // Ajouter des boutons d'action dans la colonne
         ajouterBoutonsActions();
         
         // Charger les données
         chargerDonnees();
+        
+        // Debug : afficher le nombre de salles chargées
+        System.out.println("Nombre de salles chargées : " + sallesList.size());
+        for (Salle s : sallesList) {
+            System.out.println("Salle : ID=" + s.getIdSalle() + ", Nom=" + s.getNom());
+        }
         
         // Listener sur la sélection
         salleTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -197,6 +209,7 @@ public class SalleController {
         afficherSucces("Données actualisées !");
     }
 
+
     private void chargerDonnees() {
         sallesList.setAll(salleRepository.getToutesLesSalles());
         salleTableView.setItems(sallesList);
@@ -232,5 +245,12 @@ public class SalleController {
     private void afficherSucces(String message) {
         messageLabel.setStyle("-fx-text-fill: #27ae60;");
         messageLabel.setText("✅ " + message);
+    }
+
+    @FXML
+    private void handleRetour() {
+        // Fermer la fenêtre actuelle
+        javafx.stage.Stage stage = (javafx.stage.Stage) retourBtn.getScene().getWindow();
+        stage.close();
     }
 }

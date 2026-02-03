@@ -1,15 +1,15 @@
 package model;
 
 public class Salle {
-    
-    private int idSalle;
+
+    private Integer idSalle;  // ← CHANGEMENT ICI : Integer au lieu de int
     private String nom;
 
     // Constructeurs
     public Salle() {
     }
 
-    public Salle(int idSalle, String nom) {
+    public Salle(Integer idSalle, String nom) {  // ← Integer ici aussi
         this.idSalle = idSalle;
         this.nom = nom;
     }
@@ -19,11 +19,11 @@ public class Salle {
     }
 
     // Getters et Setters
-    public int getIdSalle() {
+    public Integer getIdSalle() {  // ← Integer ici aussi
         return idSalle;
     }
 
-    public void setIdSalle(int idSalle) {
+    public void setIdSalle(Integer idSalle) {  // ← Integer ici aussi
         this.idSalle = idSalle;
     }
 

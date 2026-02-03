@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import model.Fourniture;
@@ -28,6 +27,7 @@ public class FournitureController {
     @FXML private Button annulerBtn;
     @FXML private Button ajouterStockBtn;
     @FXML private Button retirerStockBtn;
+    @FXML private Button retourBtn;
     
     @FXML private TableView<Fourniture> fournitureTableView;
     @FXML private TableColumn<Fourniture, Integer> idColumn;
@@ -45,11 +45,22 @@ public class FournitureController {
         fournitureRepository = new FournitureRepository();
         fournituresList = FXCollections.observableArrayList();
         
-        // Configuration des colonnes
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("idFourniture"));
-        libelleColumn.setCellValueFactory(new PropertyValueFactory<>("libelle"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        stockColumn.setCellValueFactory(new PropertyValueFactory<>("stockActuel"));
+        // Configuration des colonnes AVEC LAMBDA
+        idColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getIdFourniture()).asObject()
+        );
+        
+        libelleColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getLibelle())
+        );
+        
+        descriptionColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDescription())
+        );
+        
+        stockColumn.setCellValueFactory(cellData -> 
+            new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getStockActuel()).asObject()
+        );
         
         // Colorer le stock en rouge si faible
         stockColumn.setCellFactory(column -> new TableCell<Fourniture, Integer>() {
@@ -77,6 +88,13 @@ public class FournitureController {
         
         // Charger les données
         chargerDonnees();
+        
+        // Debug : afficher le nombre de fournitures chargées
+        System.out.println("=== DEBUG FOURNITURES ===");
+        System.out.println("Nombre de fournitures chargées : " + fournituresList.size());
+        for (Fourniture f : fournituresList) {
+            System.out.println("Fourniture : ID=" + f.getIdFourniture() + ", Libelle=" + f.getLibelle() + ", Stock=" + f.getStockActuel());
+        }
         
         // Listener sur la sélection
         fournitureTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -375,6 +393,7 @@ public class FournitureController {
         afficherSucces("Données actualisées !");
     }
 
+
     private void chargerDonnees() {
         fournituresList.setAll(fournitureRepository.getToutesLesFournitures());
         fournitureTableView.setItems(fournituresList);
@@ -416,5 +435,12 @@ public class FournitureController {
     private void afficherSucces(String message) {
         messageLabel.setStyle("-fx-text-fill: #27ae60;");
         messageLabel.setText("✅ " + message);
+    }
+
+    @FXML
+    private void handleRetour() {
+        // Fermer la fenêtre actuelle
+        javafx.stage.Stage stage = (javafx.stage.Stage) retourBtn.getScene().getWindow();
+        stage.close();
     }
 }

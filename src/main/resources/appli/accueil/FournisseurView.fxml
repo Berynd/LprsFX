@@ -9,16 +9,21 @@
     
     <top>
         <VBox spacing="10.0" style="-fx-background-color: #8e44ad; -fx-padding: 20;">
-            <Label text="Gestion des Fournisseurs" textFill="WHITE">
-                <font>
-                    <Font name="Arial Bold" size="24.0" />
-                </font>
-            </Label>
-            <Label text="Gérez vos fournisseurs et leurs contacts" textFill="#ecf0f1">
-                <font>
-                    <Font name="Arial" size="12.0" />
-                </font>
-            </Label>
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+                <Button fx:id="retourBtn" text="← Retour" onAction="#handleRetour" style="-fx-background-color: #7d3c98; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <Label text="Gestion des Fournisseurs" textFill="WHITE">
+                        <font>
+                            <Font name="Arial Bold" size="24.0" />
+                        </font>
+                    </Label>
+                    <Label text="Gérez vos fournisseurs et leurs contacts" textFill="#ecf0f1">
+                        <font>
+                            <Font name="Arial" size="12.0" />
+                        </font>
+                    </Label>
+                </VBox>
+            </HBox>
         </VBox>
     </top>
     
