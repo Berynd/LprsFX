@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="560.0" prefWidth="820.0" style="-fx-background-color: #F5F6FA;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.ficheetudiante.FicheEtudianteController">
+
+    <children>
+        <VBox spacing="16.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="24.0">
+
+            <!-- Bandeau titre -->
+            <VBox spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-radius: 14; -fx-border-color: #D9DEE8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 12, 0, 0, 3);">
+                <padding>
+                    <Insets bottom="18" left="18" right="18" top="18" />
+                </padding>
+
+                <Label style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #111827; -fx-letter-spacing: 1px;" text="FICHE ETUDIANTE" />
+                <Separator />
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #6B7280;" text="Renseignez les informations ci-dessous" />
+            </VBox>
+
+            <!-- Carte principale -->
+            <VBox spacing="14.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-radius: 14; -fx-border-color: #D9DEE8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 12, 0, 0, 3);" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="18" left="18" right="18" top="18" />
+                </padding>
+
+                <!-- Encadré "Fiche étudiante 2026" -->
+                <StackPane alignment="CENTER" style="-fx-background-color: #EEF2FF; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #C7D2FE;">
+                    <padding>
+                        <Insets bottom="10" left="12" right="12" top="10" />
+                    </padding>
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: 700; -fx-text-fill: #1F2937;" text="Fiche étudiante 2026" />
+                </StackPane>
+
+                <!-- Formulaire -->
+                <GridPane hgap="14.0" vgap="12.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" maxWidth="220" minWidth="140" prefWidth="170" />
+                        <ColumnConstraints hgrow="ALWAYS" prefWidth="520" />
+                    </columnConstraints>
+
+                    <!-- Nom -->
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;" text="Nom :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="nomField" promptText="Nom" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #D1D5DB; -fx-padding: 10 12;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <!-- Prénom -->
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;" text="Prénom :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="prenomField" promptText="Prénom" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #D1D5DB; -fx-padding: 10 12;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <!-- Email (+ @ comme sur ta feuille) -->
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;" text="Email :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="emailField" promptText="adresse@email.com" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #D1D5DB; -fx-padding: 10 12;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+
+                    <!-- Téléphone -->
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;" text="Téléphone :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <TextField fx:id="telephoneField" promptText="06 82 01 54 22" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #D1D5DB; -fx-padding: 10 12;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                    <!-- Adresse -->
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;" text="Adresse :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <TextArea fx:id="adresseArea" prefRowCount="3" promptText="Adresse complète" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #D1D5DB; -fx-padding: 10 12;" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                    <!-- Dernier diplôme -->
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;" text="Dernier diplôme :" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                    <TextField fx:id="diplomeField" promptText="Dernier diplôme" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #D1D5DB; -fx-padding: 10 12;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+
+                <Separator />
+
+                <!-- Actions -->
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+               <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#retour" style="-fx-background-color: #987625; -fx-text-fill: white; -fx-font-weight: 800; -fx-background-radius: 10; -fx-padding: 10 14;" text="retour" textFill="WHITE" />
+                    <Button fx:id="btnEffacer" style="-fx-background-color: #F3F4F6; -fx-text-fill: #111827; -fx-font-weight: 700; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #E5E7EB; -fx-padding: 10 14;" text="Effacer" />
+                    <Button fx:id="btnEnregistrer" style="-fx-background-color: #111827; -fx-text-fill: white; -fx-font-weight: 800; -fx-background-radius: 10; -fx-padding: 10 14;" text="Enregistrer" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </children>
+</AnchorPane>
