@@ -123,7 +123,7 @@ public class FournitureController {
         actionsColumn.setCellFactory(param -> new TableCell<>() {
             private final Button plusBtn = new Button("➕");
             private final Button minusBtn = new Button("➖");
-            private final Button editBtn = new Button("🔄️");
+            private final Button editBtn = new Button("⟳");
             private final Button deleteBtn = new Button("❌");
             private final HBox pane = new HBox(3, editBtn, plusBtn, minusBtn, deleteBtn);
 
