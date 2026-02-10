@@ -1,23 +1,14 @@
-package appli.ficheetudiante;
+package appli.accueil;
 
 import appli.StartApplication;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.util.Duration;
-import session.sessionUtilisateur;
-
+import model.Etudiant;
+import repository.EtudiantRepository;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 public class FicheEtudianteController {
 

@@ -76,6 +76,11 @@ public class AccueilController {
     }
 
     @FXML
+    private void handleFicheEtudiante(MouseEvent event) {
+        naviguerVers("accueil/FicheEtudiante");
+    }
+
+    @FXML
     private void handleDeconnexion() {
         // Déconnecter l'utilisateur
         sessionUtilisateur.getInstance().deconnecter();
