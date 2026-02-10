@@ -269,7 +269,7 @@ public class FournisseurController {
     }
 
     @FXML
-    public void retour(ActionEvent actionEvent) throws IOException {
+    public void handleRetour(ActionEvent actionEvent) throws IOException {
         StartApplication.changeScene("accueil/Accueil");
     }
 }
