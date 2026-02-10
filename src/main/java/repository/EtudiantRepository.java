@@ -2,18 +2,17 @@ package repository;
 
 import database.Database;
 import model.Etudiant;
-import model.Salle;
 
 import java.sql.*;
 
 public class EtudiantRepository {
-    private Connection connection;
+    private static Connection connection;
 
     public EtudiantRepository() {
         connection = Database.getConnexion();
     }
 
-    public int ajouterEtudiant(Etudiant etudiant) {
+    public static boolean ajouterEtudiant(Etudiant etudiant) {
         String sql = "INSERT INTO etudiant (nom, prenom, email, telephone, adresse, dernier_diplome) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
