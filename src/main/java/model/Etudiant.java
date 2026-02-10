@@ -10,6 +10,16 @@ public class Etudiant {
     private String adresse;
     private String dernierDiplome;
 
+    public Etudiant(int idEtudiant, String nom, String prenom, String email, String telephone, String adresse, String dernierDiplome) {
+        IdEtudiant = idEtudiant;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.telephone = telephone;
+        this.adresse = adresse;
+        this.dernierDiplome = dernierDiplome;
+    }
+
     public int getIdEtudiant() {
         return IdEtudiant;
     }

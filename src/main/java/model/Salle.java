@@ -6,9 +6,6 @@ public class Salle {
     private String nom;
 
     // Constructeurs
-    public Salle() {
-    }
-
     public Salle(Integer idSalle, String nom) {  // ← Integer ici aussi
         this.idSalle = idSalle;
         this.nom = nom;
