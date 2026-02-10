@@ -1,5 +1,6 @@
 package appli.accueil;
 
+import appli.StartApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import model.Salle;
 import repository.SalleRepository;
+
+import java.awt.event.ActionEvent;
 
 public class SalleController {
 
@@ -71,8 +74,8 @@ public class SalleController {
 
     private void ajouterBoutonsActions() {
         actionsColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button editBtn = new Button("✏️");
-            private final Button deleteBtn = new Button("🗑️");
+            private final Button editBtn = new Button("➕");
+            private final Button deleteBtn = new Button("❌");
             private final HBox pane = new HBox(5, editBtn, deleteBtn);
 
             {
@@ -248,9 +251,7 @@ public class SalleController {
     }
 
     @FXML
-    private void handleRetour() {
-        // Fermer la fenêtre actuelle
-        javafx.stage.Stage stage = (javafx.stage.Stage) retourBtn.getScene().getWindow();
-        stage.close();
+    public void retour(ActionEvent actionEvent) throws IOException {
+        StartApplication.changeScene("accueil/Accueil");
     }
 }
