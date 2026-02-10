@@ -1,6 +1,7 @@
 package appli.accueil;
 
 import appli.StartApplication;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -25,6 +26,7 @@ public class FicheEtudianteController {
     @FXML private TableColumn<Salle, Integer> idColumn;
     @FXML private TableColumn<Salle, String> nomColumn;
     @FXML private TableColumn<Salle, Void> actionsColumn;
+    private Etudiant etudiantSelectionnee;
 
     public TextField emailField;
     public TextField nomField;
@@ -44,7 +46,6 @@ public class FicheEtudianteController {
 
         if (EtudiantRepository.ajouterEtudiant(nouvelEtudiant)) {
             afficherSucces("Salle ajoutée avec succès !");
-            chargerDonnees();
             viderFormulaire();
         } else {
             afficherErreur("Erreur lors de l'ajout de la salle.");
@@ -62,16 +63,9 @@ public class FicheEtudianteController {
         messageLabel.setText("✅ " + message);
     }
 
-    private void chargerDonnees() {
-        sallesList.setAll(salleRepository.getToutesLesSalles());
-        salleTableView.setItems(sallesList);
-        mettreAJourCompteur();
-        statutLabel.setText("Dernière actualisation : " + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")));
-    }
-
     private void viderFormulaire() {
         nomTextField.clear();
-        salleSelectionnee = null;
+        etudiantSelectionnee = null;
         ajouterBtn.setDisable(false);
         modifierBtn.setDisable(true);
         supprimerBtn.setDisable(true);
