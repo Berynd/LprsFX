@@ -75,7 +75,7 @@ public class SalleController {
 
     private void ajouterBoutonsActions() {
         actionsColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button editBtn = new Button("➕");
+            private final Button editBtn = new Button("⟳");
             private final Button deleteBtn = new Button("❌");
             private final HBox pane = new HBox(5, editBtn, deleteBtn);
 

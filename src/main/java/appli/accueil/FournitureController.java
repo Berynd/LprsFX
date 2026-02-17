@@ -123,7 +123,7 @@ public class FournitureController {
         actionsColumn.setCellFactory(param -> new TableCell<>() {
             private final Button plusBtn = new Button("➕");
             private final Button minusBtn = new Button("➖");
-            private final Button editBtn = new Button("➕");
+            private final Button editBtn = new Button("⟳");
             private final Button deleteBtn = new Button("❌");
             private final HBox pane = new HBox(3, editBtn, plusBtn, minusBtn, deleteBtn);
 
@@ -439,9 +439,8 @@ public class FournitureController {
         messageLabel.setStyle("-fx-text-fill: #27ae60;");
         messageLabel.setText("✅ " + message);
     }
-
     @FXML
-    public void retour(ActionEvent actionEvent) throws IOException {
+    public void handleRetour(ActionEvent actionEvent) throws IOException {
         StartApplication.changeScene("accueil/Accueil");
     }
 }
