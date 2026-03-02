@@ -51,4 +51,8 @@ public class FicheEtudianteController {
     public Button btnEnregistrer;
     public Button btnRetour;
 
+    @FXML
+    public void retour(ActionEvent actionEvent) throws IOException {
+        StartApplication.changeScene("accueil/Accueil");
+    }
 }

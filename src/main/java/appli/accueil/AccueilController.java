@@ -71,14 +71,10 @@ public class AccueilController {
     }
 
     @FXML
-    private void handleRendezVous(MouseEvent event) {
-        naviguerVers("accueil/RendezVous");
-    }
+    private void handleRendezVous(MouseEvent event) { naviguerVers("accueil/RendezVous"); }
 
     @FXML
-    private void handleFicheEtudiante(MouseEvent event) {
-        naviguerVers("accueil/FicheEtudiante");
-    }
+    private void handleFicheEtudiante(MouseEvent event) { naviguerVers("accueil/FicheEtudiante"); }
 
     @FXML
     private void handleDeconnexion() {
