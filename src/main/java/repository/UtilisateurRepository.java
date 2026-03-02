@@ -150,6 +150,29 @@ public class UtilisateurRepository {
         }
     }
 
+    public Utilisateur getUtilisateurById(int id) {
+        String sql = "SELECT * FROM utilisateur WHERE id_utilisateur = ?";
+        try {
+            if (cnx == null || cnx.isClosed()) cnx = Database.getConnexion();
+            PreparedStatement stmt = cnx.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Utilisateur(
+                    rs.getInt("id_utilisateur"),
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("email"),
+                    rs.getString("mdp"),
+                    rs.getString("role")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur récupération utilisateur par id : " + e.getMessage());
+        }
+        return null;
+    }
+
     public void mettreAJourUtilisateur(Utilisateur utilisateur) {
         String sql = "UPDATE utilisateur SET nom = ?, prenom = ?,email = ? WHERE id_utilisateur = ?";
         try {

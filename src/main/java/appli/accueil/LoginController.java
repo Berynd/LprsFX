@@ -99,26 +99,9 @@ public class LoginController {
             // Adapter selon les rôles de votre application
             switch (role) {
                 case "Secrétaire":
-                    // TODO: Remplacer par la vraie page
-                    System.out.println("Redirection vers interface Secrétaire");
-                    // StartApplication.changeScene("secretaire/Accueil");
-                    break;
-                    
                 case "Professeur":
-                    // TODO: Remplacer par la vraie page
-                    System.out.println("Redirection vers interface Professeur");
-                    StartApplication.changeScene("accueil/Accueil");
-                    break;
-                    
                 case "Gestionnaire de stock":
-                    // TODO: Remplacer par la vraie page
-                    System.out.println("Redirection vers interface Gestionnaire");
-                    // StartApplication.changeScene("gestionnaire/Accueil");
-                    break;
-
                 case "Admin":
-                    // TODO: Remplacer par la vraie page
-                    System.out.println("Redirection vers interface Admin");
                     StartApplication.changeScene("accueil/Accueil");
                     break;
                     
