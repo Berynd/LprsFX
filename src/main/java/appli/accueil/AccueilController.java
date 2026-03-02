@@ -21,7 +21,6 @@ public class AccueilController {
     @FXML private Label utilisateurLabel;
     @FXML private Label dateHeureLabel;
 
-    // Cartes du menu
     @FXML private VBox carteSalles;
     @FXML private VBox carteFournisseurs;
     @FXML private VBox carteFournitures;
@@ -29,6 +28,8 @@ public class AccueilController {
     @FXML private VBox carteDemandes;
     @FXML private VBox carteRendezVous;
     @FXML private VBox carteFicheEtudiante;
+    @FXML private VBox carteDossiers;
+    @FXML private VBox carteFilieres;
 
     @FXML
     public void initialize() {
@@ -45,31 +46,30 @@ public class AccueilController {
     }
 
     /**
-     * Affiche uniquement les cartes auxquelles le rôle a accès.
+     * Accès par rôle :
      *
      * Admin             : tout
      * Gestionnaire      : Fournisseurs, Fournitures, Demandes
-     * Secrétaire        : Fiches Étudiantes (dossiers inclus)
-     * Professeur        : Fournitures, Demandes, Rendez-vous, Fiches Étudiantes
+     * Secrétaire        : Fiches Étudiantes, Dossiers d'inscription, Filières
+     * Professeur        : Fournitures, Demandes, Rendez-vous, Dossiers d'inscription
      */
     private void appliquerDroitsRole(String role) {
-        // Tout masquer par défaut
-        masquer(carteSalles, carteFournisseurs, carteFournitures,
-                carteUtilisateurs, carteDemandes, carteRendezVous, carteFicheEtudiante);
+        masquer(carteSalles, carteFournisseurs, carteFournitures, carteUtilisateurs,
+                carteDemandes, carteRendezVous, carteFicheEtudiante, carteDossiers, carteFilieres);
 
         switch (role) {
             case "Admin" ->
-                afficher(carteSalles, carteFournisseurs, carteFournitures,
-                         carteUtilisateurs, carteDemandes, carteRendezVous, carteFicheEtudiante);
+                afficher(carteSalles, carteFournisseurs, carteFournitures, carteUtilisateurs,
+                         carteDemandes, carteRendezVous, carteFicheEtudiante, carteDossiers, carteFilieres);
 
             case "Gestionnaire de stock" ->
                 afficher(carteFournisseurs, carteFournitures, carteDemandes);
 
             case "Secrétaire" ->
-                afficher(carteFicheEtudiante);
+                afficher(carteFicheEtudiante, carteDossiers, carteFilieres);
 
             case "Professeur" ->
-                afficher(carteFournitures, carteDemandes, carteRendezVous, carteFicheEtudiante);
+                afficher(carteFournitures, carteDemandes, carteRendezVous, carteDossiers);
         }
     }
 
@@ -83,13 +83,15 @@ public class AccueilController {
 
     // --- Navigation ---
 
-    @FXML private void handleGestionSalles(MouseEvent e)       { naviguerVers("accueil/Salle"); }
-    @FXML private void handleGestionFournisseurs(MouseEvent e)  { naviguerVers("accueil/Fournisseur"); }
-    @FXML private void handleGestionFournitures(MouseEvent e)   { naviguerVers("accueil/Fourniture"); }
-    @FXML private void handleGestionUtilisateurs(MouseEvent e)  { naviguerVers("accueil/Utilisateur"); }
-    @FXML private void handleDemandes(MouseEvent e)             { naviguerVers("accueil/DemandeFourniture"); }
-    @FXML private void handleRendezVous(MouseEvent e)           { naviguerVers("accueil/RendezVous"); }
-    @FXML private void handleFicheEtudiante(MouseEvent e)       { naviguerVers("accueil/FicheEtudiante"); }
+    @FXML private void handleGestionSalles(MouseEvent e)      { naviguerVers("accueil/Salle"); }
+    @FXML private void handleGestionFournisseurs(MouseEvent e) { naviguerVers("accueil/Fournisseur"); }
+    @FXML private void handleGestionFournitures(MouseEvent e)  { naviguerVers("accueil/Fourniture"); }
+    @FXML private void handleGestionUtilisateurs(MouseEvent e) { naviguerVers("accueil/Utilisateur"); }
+    @FXML private void handleDemandes(MouseEvent e)            { naviguerVers("accueil/DemandeFourniture"); }
+    @FXML private void handleRendezVous(MouseEvent e)          { naviguerVers("accueil/RendezVous"); }
+    @FXML private void handleFicheEtudiante(MouseEvent e)      { naviguerVers("accueil/FicheEtudiante"); }
+    @FXML private void handleDossiers(MouseEvent e)            { naviguerVers("accueil/DossierInscription"); }
+    @FXML private void handleFilieres(MouseEvent e)            { naviguerVers("accueil/Filiere"); }
 
     @FXML
     private void handleDeconnexion() {
