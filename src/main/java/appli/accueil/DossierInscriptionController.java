@@ -117,7 +117,7 @@ public class DossierInscriptionController {
 
                 validerBtn.setOnAction(e -> {
                     DossierInscription d = getTableView().getItems().get(getIndex());
-                    if (dossierRepo.changerStatut(d.getIdDossierInscription(), "VALIDÉ")) {
+                    if (dossierRepo.changerStatut(d.getIdDossierInscription(), "Validé")) {
                         afficherSucces("Dossier validé !");
                         chargerDonnees();
                     }
@@ -125,7 +125,7 @@ public class DossierInscriptionController {
 
                 refuserBtn.setOnAction(e -> {
                     DossierInscription d = getTableView().getItems().get(getIndex());
-                    if (dossierRepo.changerStatut(d.getIdDossierInscription(), "REFUSÉ")) {
+                    if (dossierRepo.changerStatut(d.getIdDossierInscription(), "Refusé")) {
                         afficherSucces("Dossier refusé.");
                         chargerDonnees();
                     }
@@ -158,7 +158,7 @@ public class DossierInscriptionController {
 
         DossierInscription d = new DossierInscription(0);
         d.setDateCreation(LocalDate.now().toString());
-        d.setStatut("EN_ATTENTE");
+        d.setStatut("En attente");
         d.setMotivation(motivationArea.getText().trim());
         d.setRefEtudiant(etudiantCombo.getValue().getIdEtudiant());
         d.setRefFiliere(filiereCombo.getValue().getIdFiliere());
@@ -172,7 +172,7 @@ public class DossierInscriptionController {
 
             // Retour à l’espace secrétaire pour mise à jour stats
             try {
-                StartApplication.changeScene("accueil/EspaceSecretaire");
+                StartApplication.changeScene("accueil/Accueil");
             } catch (IOException e) {
                 e.printStackTrace();
             }

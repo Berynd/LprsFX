@@ -74,9 +74,9 @@ public class EspaceSecretaireController {
     }
 
     private void chargerStatistiques() {
-        int accepte = dossierRepo.countByStatut("VALIDÉ");
-        int refuse = dossierRepo.countByStatut("REFUSÉ");
-        int attente = dossierRepo.countByStatut("EN_ATTENTE");
+        int accepte = dossierRepo.countByStatut("Validé");
+        int refuse = dossierRepo.countByStatut("Refusé");
+        int attente = dossierRepo.countByStatut("En attente");
 
         int total = accepte + refuse + attente;
 

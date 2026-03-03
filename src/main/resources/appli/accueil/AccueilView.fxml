@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.accueil.AccueilController">
+<BorderPane prefHeight="1200.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.accueil.AccueilController">
     
     <!-- Barre de navigation en haut -->
     <top>
@@ -34,12 +34,11 @@
     
     <!-- Contenu central -->
     <center>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
-                    style="-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="610.0" prefWidth="1000.0" style="-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;" vbarPolicy="AS_NEEDED">
         <VBox alignment="TOP_CENTER" spacing="40.0" style="-fx-padding: 50;">
             
             <!-- En-tête de bienvenue -->
-            <VBox alignment="CENTER" spacing="10.0">
+            <VBox alignment="CENTER" spacing="1.0">
                 <Label style="-fx-font-size: 42px; -fx-font-weight: bold; -fx-font-family: 'Segoe UI Light';" text="Bienvenue sur LPRS Manager" textFill="WHITE">
                     <effect>
                         <DropShadow color="#00d4ff" radius="10" spread="0.3" />
@@ -49,7 +48,7 @@
             </VBox>
             
             <!-- Grille de cartes de menu -->
-            <GridPane alignment="CENTER" hgap="25.0" vgap="25.0">
+            <GridPane alignment="CENTER" hgap="25.0" prefHeight="912.0" prefWidth="706.0" vgap="25.0">
                 
                 <!-- Carte Gestion des Salles -->
                 <VBox fx:id="carteSalles" alignment="CENTER" onMouseClicked="#handleGestionSalles" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(52, 152, 219, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="0" GridPane.rowIndex="0">
@@ -63,6 +62,13 @@
                     <Label style="-fx-font-size: 48px;" text="📦" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Fournisseurs" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer vos fournisseurs" textFill="#95a5a6" wrapText="true" />
+                </VBox>
+
+                   <!-- Carte Fiches Étudiantes -->
+                <VBox fx:id="carteFicheEtudiante" alignment="CENTER" onMouseClicked="#handleFicheEtudiante" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(52, 152, 219, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.rowIndex="4">
+                    <Label style="-fx-font-size: 48px;" text="🎓" />
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Fiches Étudiantes" textFill="WHITE" />
+                    <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer les fiches étudiantes" textFill="#95a5a6" wrapText="true" />
                 </VBox>
 
                 <!-- Carte Gestion des Fournitures -->
@@ -115,29 +121,24 @@
                     </children>
                 </VBox>
 
-                   <!-- Carte Fiches Étudiantes -->
-                <VBox fx:id="carteFicheEtudiante" alignment="CENTER" onMouseClicked="#handleFicheEtudiante" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(52, 152, 219, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="5">
-                    <Label style="-fx-font-size: 48px;" text="🎓" />
-                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Fiches Étudiantes" textFill="WHITE" />
-                    <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer les fiches étudiantes" textFill="#95a5a6" wrapText="true" />
-                </VBox>
-
 
             <columnConstraints>
                <ColumnConstraints />
                <ColumnConstraints />
                <ColumnConstraints />
+               <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
                <ColumnConstraints />
                <ColumnConstraints />
                <ColumnConstraints />
                <ColumnConstraints />
-               <ColumnConstraints />
+                  <ColumnConstraints />
             </columnConstraints>
             <rowConstraints>
                <RowConstraints />
                <RowConstraints />
                <RowConstraints />
                <RowConstraints />
+                  <RowConstraints />
             </rowConstraints>
                 
             </GridPane>
