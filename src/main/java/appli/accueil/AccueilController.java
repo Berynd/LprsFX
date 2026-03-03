@@ -31,6 +31,8 @@ public class AccueilController {
     @FXML private VBox carteDossiers;
     @FXML private VBox carteFilieres;
     @FXML private VBox carteEspaceSecretaire;
+    @FXML private VBox carteEspaceProfesseur;
+    @FXML private VBox carteEspaceGestionnaire;
 
 
 
@@ -58,21 +60,23 @@ public class AccueilController {
      */
     private void appliquerDroitsRole(String role) {
         masquer(carteSalles, carteFournisseurs, carteFournitures, carteUtilisateurs,
-                carteDemandes, carteRendezVous, carteFicheEtudiante, carteDossiers, carteFilieres,carteEspaceSecretaire);
+                carteDemandes, carteRendezVous, carteFicheEtudiante, carteDossiers, carteFilieres,
+                carteEspaceSecretaire, carteEspaceProfesseur, carteEspaceGestionnaire);
 
         switch (role) {
             case "Admin" ->
                 afficher(carteSalles, carteFournisseurs, carteFournitures, carteUtilisateurs,
-                         carteDemandes, carteRendezVous, carteFicheEtudiante, carteDossiers, carteFilieres, carteEspaceSecretaire);
+                         carteDemandes, carteRendezVous, carteFicheEtudiante, carteDossiers, carteFilieres,
+                         carteEspaceSecretaire, carteEspaceProfesseur, carteEspaceGestionnaire);
 
             case "Gestionnaire de stock" ->
-                afficher(carteFournisseurs, carteFournitures, carteDemandes);
+                afficher(carteFournisseurs, carteFournitures, carteDemandes, carteEspaceGestionnaire);
 
             case "Secrétaire" ->
-                afficher(carteFicheEtudiante, carteDossiers, carteFilieres,carteEspaceSecretaire);
+                afficher(carteFicheEtudiante, carteDossiers, carteFilieres, carteEspaceSecretaire);
 
             case "Professeur" ->
-                afficher(carteFournitures, carteDemandes, carteRendezVous, carteDossiers);
+                afficher(carteFournitures, carteDemandes, carteRendezVous, carteDossiers, carteEspaceProfesseur);
         }
     }
 
@@ -96,6 +100,8 @@ public class AccueilController {
     @FXML private void handleDossiers(MouseEvent e)            { naviguerVers("accueil/DossierInscription"); }
     @FXML private void handleFilieres(MouseEvent e)            { naviguerVers("accueil/Filiere"); }
     @FXML private void handleEspaceSecretaire(MouseEvent e)    { naviguerVers("accueil/EspaceSecretaire"); }
+    @FXML private void handleEspaceProfesseur(MouseEvent e)   { naviguerVers("accueil/EspaceProfesseur"); }
+    @FXML private void handleEspaceGestionnaire(MouseEvent e) { naviguerVers("accueil/EspaceGestionnaire"); }
 
     @FXML
     private void handleDeconnexion() {
