@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.accueil.AccueilController">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.accueil.AccueilController">
     
     <!-- Barre de navigation en haut -->
     <top>
@@ -66,7 +66,7 @@
                 </VBox>
 
                 <!-- Carte Gestion des Fournitures -->
-                <VBox fx:id="carteFournitures" alignment="CENTER" onMouseClicked="#handleGestionFournitures" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(46, 204, 113, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <VBox fx:id="carteFournitures" alignment="CENTER" onMouseClicked="#handleGestionFournitures" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(46, 204, 113, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2">
                     <Label style="-fx-font-size: 48px;" text="📋" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Fournitures" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Stock et fournitures" textFill="#95a5a6" wrapText="true" />
@@ -93,33 +93,48 @@
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Planifier des RDV" textFill="#95a5a6" wrapText="true" />
                 </VBox>
 
-                <!-- Carte Fiches Étudiantes -->
-                <VBox fx:id="carteFicheEtudiante" alignment="CENTER" onMouseClicked="#handleFicheEtudiante" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(52, 152, 219, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <!-- Carte Dossiers d'inscription -->
+                <VBox fx:id="carteDossiers" alignment="CENTER" onMouseClicked="#handleDossiers" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(230, 126, 34, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.rowIndex="3">
+                    <Label style="-fx-font-size: 48px;" text="📄" />
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Dossiers Inscription" textFill="WHITE" />
+                    <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Suivi des dossiers d'inscription" textFill="#95a5a6" wrapText="true" />
+                </VBox>
+                
+                <VBox fx:id="carteEspaceSecretaire" alignment="CENTER" onMouseClicked="#handleEspaceSecretaire" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(39, 174, 96, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                    <Label style="-fx-font-size: 48px;" text="🏫" />
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Espace Secretaire" textFill="WHITE" />
+                    <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Secretaire" textFill="#95a5a6" wrapText="true" />
+                </VBox>
+   
+                <!-- Carte Filières -->
+                <VBox fx:id="carteFilieres" alignment="CENTER" onMouseClicked="#handleFilieres" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(39, 174, 96, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <Label style="-fx-font-size: 48px;" text="🏫" />
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Filières" textFill="WHITE" />
+                        <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer les filières de formation" textFill="#95a5a6" wrapText="true" />
+                    </children>
+                </VBox>
+
+                   <!-- Carte Fiches Étudiantes -->
+                <VBox fx:id="carteFicheEtudiante" alignment="CENTER" onMouseClicked="#handleFicheEtudiante" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(52, 152, 219, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="5">
                     <Label style="-fx-font-size: 48px;" text="🎓" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Fiches Étudiantes" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer les fiches étudiantes" textFill="#95a5a6" wrapText="true" />
                 </VBox>
 
-                <!-- Carte Dossiers d'inscription -->
-                <VBox fx:id="carteDossiers" alignment="CENTER" onMouseClicked="#handleDossiers" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(230, 126, 34, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <Label style="-fx-font-size: 48px;" text="📄" />
-                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Dossiers Inscription" textFill="WHITE" />
-                    <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Suivi des dossiers d'inscription" textFill="#95a5a6" wrapText="true" />
-                </VBox>
-
-                <!-- Carte Filières -->
-                <VBox fx:id="carteFilieres" alignment="CENTER" onMouseClicked="#handleFilieres" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(39, 174, 96, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                    <Label style="-fx-font-size: 48px;" text="🏫" />
-                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Filières" textFill="WHITE" />
-                    <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer les filières de formation" textFill="#95a5a6" wrapText="true" />
-                </VBox>
 
             <columnConstraints>
                <ColumnConstraints />
                <ColumnConstraints />
                <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
             </columnConstraints>
             <rowConstraints>
+               <RowConstraints />
                <RowConstraints />
                <RowConstraints />
                <RowConstraints />

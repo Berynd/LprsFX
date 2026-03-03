@@ -128,4 +128,19 @@ public class DossierInscriptionRepository {
         d.setRefSecretaire(rs.getInt("ref_secretaire"));
         return d;
     }
+    public int countByStatut(String statut) {
+        String sql = "SELECT COUNT(*) FROM dossier_inscription WHERE statut = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, statut);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }
+

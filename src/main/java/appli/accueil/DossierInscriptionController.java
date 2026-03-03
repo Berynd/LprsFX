@@ -70,11 +70,11 @@ public class DossierInscriptionController {
 
         // Configurer colonnes
         idColumn.setCellValueFactory(c ->
-            new javafx.beans.property.SimpleIntegerProperty(c.getValue().getIdDossierInscription()).asObject());
+                new javafx.beans.property.SimpleIntegerProperty(c.getValue().getIdDossierInscription()).asObject());
         dateColumn.setCellValueFactory(c ->
-            new javafx.beans.property.SimpleStringProperty(c.getValue().getDateCreation()));
+                new javafx.beans.property.SimpleStringProperty(c.getValue().getDateCreation()));
         statutColumn.setCellValueFactory(c ->
-            new javafx.beans.property.SimpleStringProperty(c.getValue().getStatut()));
+                new javafx.beans.property.SimpleStringProperty(c.getValue().getStatut()));
         etudiantColumn.setCellValueFactory(c -> {
             Etudiant e = etudiantRepo.getEtudiantById(c.getValue().getRefEtudiant());
             return new javafx.beans.property.SimpleStringProperty(e != null ? e.getNom() + " " + e.getPrenom() : "?");
@@ -92,9 +92,9 @@ public class DossierInscriptionController {
                 else {
                     setText(statut);
                     switch (statut) {
-                        case "Validé"    -> setStyle("-fx-text-fill: #27ae60; -fx-font-weight: bold;");
-                        case "Refusé"    -> setStyle("-fx-text-fill: #e74c3c; -fx-font-weight: bold;");
-                        default          -> setStyle("-fx-text-fill: #f39c12; -fx-font-weight: bold;");
+                        case "VALIDÉ" -> setStyle("-fx-text-fill: #27ae60; -fx-font-weight: bold;");
+                        case "REFUSÉ" -> setStyle("-fx-text-fill: #e74c3c; -fx-font-weight: bold;");
+                        default -> setStyle("-fx-text-fill: #f39c12; -fx-font-weight: bold;");
                     }
                 }
             }
@@ -114,20 +114,23 @@ public class DossierInscriptionController {
                 validerBtn.setStyle("-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 10px;");
                 refuserBtn.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 10px;");
                 supprimerBtn.setStyle("-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-size: 10px;");
+
                 validerBtn.setOnAction(e -> {
                     DossierInscription d = getTableView().getItems().get(getIndex());
-                    if (dossierRepo.changerStatut(d.getIdDossierInscription(), "Validé")) {
+                    if (dossierRepo.changerStatut(d.getIdDossierInscription(), "VALIDÉ")) {
                         afficherSucces("Dossier validé !");
                         chargerDonnees();
                     }
                 });
+
                 refuserBtn.setOnAction(e -> {
                     DossierInscription d = getTableView().getItems().get(getIndex());
-                    if (dossierRepo.changerStatut(d.getIdDossierInscription(), "Refusé")) {
+                    if (dossierRepo.changerStatut(d.getIdDossierInscription(), "REFUSÉ")) {
                         afficherSucces("Dossier refusé.");
                         chargerDonnees();
                     }
                 });
+
                 supprimerBtn.setOnAction(e -> {
                     DossierInscription d = getTableView().getItems().get(getIndex());
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Supprimer ce dossier ?", ButtonType.YES, ButtonType.NO);
@@ -139,6 +142,7 @@ public class DossierInscriptionController {
                     });
                 });
             }
+
             @Override protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
                 setGraphic(empty ? null : pane);
@@ -154,7 +158,7 @@ public class DossierInscriptionController {
 
         DossierInscription d = new DossierInscription(0);
         d.setDateCreation(LocalDate.now().toString());
-        d.setStatut("En attente");
+        d.setStatut("EN_ATTENTE");
         d.setMotivation(motivationArea.getText().trim());
         d.setRefEtudiant(etudiantCombo.getValue().getIdEtudiant());
         d.setRefFiliere(filiereCombo.getValue().getIdFiliere());
@@ -165,6 +169,13 @@ public class DossierInscriptionController {
             afficherSucces("Dossier créé avec succès !");
             chargerDonnees();
             viderFormulaire();
+
+            // Retour à l’espace secrétaire pour mise à jour stats
+            try {
+                StartApplication.changeScene("accueil/EspaceSecretaire");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             afficherErreur("Erreur lors de la création du dossier.");
         }
@@ -184,10 +195,11 @@ public class DossierInscriptionController {
     private void chargerDonnees() {
         dossiersList.setAll(dossierRepo.getTousDossiers());
         dossierTableView.setItems(dossiersList);
+
         int n = dossiersList.size();
         compteurLabel.setText("(" + n + " dossier" + (n > 1 ? "s" : "") + ")");
         statutLabel.setText("Actualisé à " + java.time.LocalTime.now().format(
-            java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")));
+                java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")));
     }
 
     private void viderFormulaire() {

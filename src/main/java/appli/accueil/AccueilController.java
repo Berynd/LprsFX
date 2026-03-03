@@ -30,6 +30,9 @@ public class AccueilController {
     @FXML private VBox carteFicheEtudiante;
     @FXML private VBox carteDossiers;
     @FXML private VBox carteFilieres;
+    @FXML private VBox carteEspaceSecretaire;
+
+
 
     @FXML
     public void initialize() {
@@ -55,21 +58,21 @@ public class AccueilController {
      */
     private void appliquerDroitsRole(String role) {
         masquer(carteSalles, carteFournisseurs, carteFournitures, carteUtilisateurs,
-                carteDemandes, carteRendezVous, carteFicheEtudiante, carteDossiers, carteFilieres);
+                carteDemandes, carteRendezVous, carteFicheEtudiante, carteDossiers, carteFilieres,carteEspaceSecretaire);
 
         switch (role) {
             case "Admin" ->
                 afficher(carteSalles, carteFournisseurs, carteFournitures, carteUtilisateurs,
-                         carteDemandes, carteRendezVous, carteFicheEtudiante, carteDossiers, carteFilieres);
+                         carteDemandes, carteRendezVous, carteFicheEtudiante, carteDossiers, carteFilieres, carteEspaceSecretaire);
 
             case "Gestionnaire de stock" ->
                 afficher(carteFournisseurs, carteFournitures, carteDemandes);
 
             case "Secrétaire" ->
-                afficher(carteFicheEtudiante, carteDossiers);
+                afficher(carteFicheEtudiante, carteDossiers, carteFilieres,carteEspaceSecretaire);
 
             case "Professeur" ->
-                afficher(carteDemandes, carteRendezVous, carteDossiers);
+                afficher(carteFournitures, carteDemandes, carteRendezVous, carteDossiers);
         }
     }
 
@@ -92,6 +95,7 @@ public class AccueilController {
     @FXML private void handleFicheEtudiante(MouseEvent e)      { naviguerVers("accueil/FicheEtudiante"); }
     @FXML private void handleDossiers(MouseEvent e)            { naviguerVers("accueil/DossierInscription"); }
     @FXML private void handleFilieres(MouseEvent e)            { naviguerVers("accueil/Filiere"); }
+    @FXML private void handleEspaceSecretaire(MouseEvent e)    { naviguerVers("accueil/EspaceSecretaire"); }
 
     @FXML
     private void handleDeconnexion() {
