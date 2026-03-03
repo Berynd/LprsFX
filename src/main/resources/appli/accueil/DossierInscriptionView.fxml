@@ -10,7 +10,7 @@
     <top>
         <VBox style="-fx-background-color: #e67e22; -fx-padding: 20;">
             <HBox alignment="CENTER_LEFT" spacing="15.0">
-                <Button text="← Fiches Étudiantes" onAction="#handleRetour"
+                <Button text="← Retour" onAction="#handleRetour"
                         style="-fx-background-color: #d35400; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
                 <VBox spacing="3.0" HBox.hgrow="ALWAYS">
                     <Label text="Dossiers d'Inscription" textFill="WHITE">

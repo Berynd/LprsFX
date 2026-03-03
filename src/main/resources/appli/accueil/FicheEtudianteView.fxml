@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.accueil.FicheEtudianteController">
+<BorderPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.accueil.FicheEtudianteController">
 
     <top>
         <VBox style="-fx-background-color: #16a085; -fx-padding: 20;">
             <HBox alignment="CENTER_LEFT" spacing="15.0">
-                <Button fx:id="retourAccueilBtn" text="← Accueil" onAction="#handleRetour"
-                        style="-fx-background-color: #1abc9c; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
+                <Button fx:id="retourAccueilBtn" onAction="#handleRetour" style="-fx-background-color: #1abc9c; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="← Accueil" />
                 <VBox spacing="3.0" HBox.hgrow="ALWAYS">
                     <Label text="Gestion des Étudiants" textFill="WHITE">
                         <font><Font name="Arial Bold" size="24.0" /></font>
@@ -20,8 +28,6 @@
                         <font><Font name="Arial" size="12.0" /></font>
                     </Label>
                 </VBox>
-                <Button text="📋 Dossiers d'Inscription" onAction="#handleDossiers"
-                        style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 15;" />
             </HBox>
         </VBox>
     </top>
@@ -33,7 +39,7 @@
             <VBox spacing="12.0" style="-fx-background-color: #ecf0f1;">
                 <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
 
-                <Label text="Informations de l'étudiant" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+                <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Informations de l'étudiant" />
 
                 <VBox spacing="4.0">
                     <Label text="Nom *" />
@@ -65,17 +71,14 @@
                 </Label>
 
                 <HBox spacing="8.0">
-                    <Button fx:id="ajouterBtn" text="Ajouter" onAction="#handleAjouter"
-                            style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="90.0" />
-                    <Button fx:id="modifierBtn" text="Modifier" onAction="#handleModifier"
-                            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="90.0" disable="true" />
-                    <Button fx:id="annulerBtn" text="Annuler" onAction="#handleAnnuler"
-                            style="-fx-background-color: #95a5a6; -fx-text-fill: white;" prefWidth="80.0" />
+                    <Button fx:id="ajouterBtn" onAction="#handleAjouter" prefWidth="90.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" text="Ajouter" />
+                    <Button fx:id="modifierBtn" disable="true" onAction="#handleModifier" prefWidth="90.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" text="Modifier" />
+                    <Button fx:id="annulerBtn" onAction="#handleAnnuler" prefWidth="80.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Annuler" />
                 </HBox>
 
                 <Separator />
-                <Label text="Rechercher" style="-fx-font-weight: bold;" />
-                <TextField fx:id="rechercheTextField" promptText="Rechercher par nom, prénom, email..." onKeyReleased="#handleRecherche" />
+                <Label style="-fx-font-weight: bold;" text="Rechercher" />
+                <TextField fx:id="rechercheTextField" onKeyReleased="#handleRecherche" promptText="Rechercher par nom, prénom, email..." />
             </VBox>
 
             <!-- Table -->
@@ -83,26 +86,24 @@
                 <padding><Insets bottom="20.0" left="10.0" right="20.0" top="20.0" /></padding>
 
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
-                    <Label text="Liste des étudiants" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
-                    <Label fx:id="compteurLabel" text="(0 étudiant)" style="-fx-text-fill: #7f8c8d;" />
+                    <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Liste des étudiants" />
+                    <Label fx:id="compteurLabel" style="-fx-text-fill: #7f8c8d;" text="(0 étudiant)" />
                 </HBox>
 
                 <TableView fx:id="etudiantTableView" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="idColumn" text="ID" prefWidth="45.0" />
-                        <TableColumn fx:id="nomColumn" text="Nom" prefWidth="120.0" />
-                        <TableColumn fx:id="prenomColumn" text="Prénom" prefWidth="120.0" />
-                        <TableColumn fx:id="emailColumn" text="Email" prefWidth="180.0" />
-                        <TableColumn fx:id="telephoneColumn" text="Téléphone" prefWidth="110.0" />
-                        <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100.0" />
+                        <TableColumn fx:id="idColumn" prefWidth="45.0" text="ID" />
+                        <TableColumn fx:id="nomColumn" prefWidth="120.0" text="Nom" />
+                        <TableColumn fx:id="prenomColumn" prefWidth="120.0" text="Prénom" />
+                        <TableColumn fx:id="emailColumn" prefWidth="180.0" text="Email" />
+                        <TableColumn fx:id="telephoneColumn" prefWidth="110.0" text="Téléphone" />
+                        <TableColumn fx:id="actionsColumn" prefWidth="100.0" text="Actions" />
                     </columns>
                 </TableView>
 
-                <HBox spacing="10.0" alignment="CENTER_RIGHT">
-                    <Button text="Actualiser" onAction="#handleActualiser"
-                            style="-fx-background-color: #3498db; -fx-text-fill: white;" />
-                    <Button fx:id="supprimerBtn" text="Supprimer" onAction="#handleSupprimer"
-                            style="-fx-background-color: #e74c3c; -fx-text-fill: white;" disable="true" />
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <Button onAction="#handleActualiser" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Actualiser" />
+                    <Button fx:id="supprimerBtn" disable="true" onAction="#handleSupprimer" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Supprimer" />
                 </HBox>
             </VBox>
 

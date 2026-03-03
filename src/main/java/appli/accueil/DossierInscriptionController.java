@@ -178,7 +178,7 @@ public class DossierInscriptionController {
 
     @FXML
     public void handleRetour(ActionEvent event) throws IOException {
-        StartApplication.changeScene("accueil/FicheEtudiante");
+        StartApplication.changeScene("accueil/Accueil");
     }
 
     private void chargerDonnees() {

@@ -10,7 +10,7 @@
     <top>
         <VBox style="-fx-background-color: #27ae60; -fx-padding: 20;">
             <HBox alignment="CENTER_LEFT" spacing="15.0">
-                <Button text="← Accueil" onAction="#handleRetour"
+                <Button text="← Retour" onAction="#handleRetour"
                         style="-fx-background-color: #1e8449; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
                 <VBox spacing="3.0" HBox.hgrow="ALWAYS">
                     <Label text="Gestion des Filières" textFill="WHITE">

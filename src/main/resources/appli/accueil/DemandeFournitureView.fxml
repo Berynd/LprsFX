@@ -10,7 +10,7 @@
     <top>
         <VBox style="-fx-background-color: #c0392b; -fx-padding: 20;">
             <HBox alignment="CENTER_LEFT" spacing="15.0">
-                <Button text="← Accueil" onAction="#handleRetour"
+                <Button text="← Retour" onAction="#handleRetour"
                         style="-fx-background-color: #a93226; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
                 <VBox spacing="3.0" HBox.hgrow="ALWAYS">
                     <Label text="Demandes de Fournitures" textFill="WHITE">

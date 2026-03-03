@@ -66,10 +66,10 @@ public class AccueilController {
                 afficher(carteFournisseurs, carteFournitures, carteDemandes);
 
             case "Secrétaire" ->
-                afficher(carteFicheEtudiante, carteDossiers, carteFilieres);
+                afficher(carteFicheEtudiante, carteDossiers);
 
             case "Professeur" ->
-                afficher(carteFournitures, carteDemandes, carteRendezVous, carteDossiers);
+                afficher(carteDemandes, carteRendezVous, carteDossiers);
         }
     }
 
