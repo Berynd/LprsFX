@@ -1,7 +1,5 @@
 package model;
 
-import eu.hansolo.toolbox.time.DateTimes;
-
 public class Utilisateur {
 
     private int idUtilisateur;
@@ -53,11 +51,11 @@ public class Utilisateur {
         this.role = role;
     }
 
-    public String getmdp() {
+    public String getMdp() {
         return mdp;
     }
 
-    public void setmdp(String mdp) {
+    public void setMdp(String mdp) {
         this.mdp = mdp;
     }
 

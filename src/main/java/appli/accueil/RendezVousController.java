@@ -15,7 +15,7 @@ import repository.EtudiantRepository;
 import repository.RdvRepository;
 import repository.SalleRepository;
 import repository.UtilisateurRepository;
-import session.sessionUtilisateur;
+import session.SessionUtilisateur;
 
 import java.io.IOException;
 import java.util.List;
@@ -158,7 +158,7 @@ public class RendezVousController {
         rdv.setDate(date);
         rdv.setDemiJournee(demi);
         rdv.setRefEtudiant(etudiantCombo.getValue().getIdEtudiant());
-        rdv.setRefProfesseur(sessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur());
+        rdv.setRefProfesseur(SessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur());
         rdv.setRefSalle(salle.getIdSalle());
 
         int id = rdvRepo.ajouterRdv(rdv);
@@ -183,8 +183,8 @@ public class RendezVousController {
     }
 
     private void chargerDonnees() {
-        int idUser = sessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur();
-        String role = sessionUtilisateur.getInstance().getRole();
+        int idUser = SessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur();
+        String role = SessionUtilisateur.getInstance().getRole();
         if ("Professeur".equals(role)) {
             rdvList.setAll(rdvRepo.getRdvParProfesseur(idUser));
         } else {

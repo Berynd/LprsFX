@@ -15,7 +15,7 @@ import repository.DemandeFournitureRepository;
 import repository.FournitureDemandeFournitureRepository;
 import repository.FournitureRepository;
 import repository.UtilisateurRepository;
-import session.sessionUtilisateur;
+import session.SessionUtilisateur;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -196,7 +196,7 @@ public class DemandeFournitureController {
         if (raisonArea.getText().trim().isEmpty()) { afficherErreur("La raison est obligatoire !"); return; }
         if (selectedFournitures.isEmpty()) { afficherErreur("Ajoutez au moins une fourniture !"); return; }
 
-        int idProf = sessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur();
+        int idProf = SessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur();
         DemandeFourniture d = new DemandeFourniture(LocalDate.now().toString(), "En attente", raisonArea.getText().trim(), idProf);
         int idDemande = demandeRepo.ajouterDemande(d);
         if (idDemande < 0) { afficherErreur("Erreur lors de la création de la demande."); return; }

@@ -11,7 +11,7 @@ import javafx.util.Duration;
 import model.DemandeFourniture;
 import repository.DemandeFournitureRepository;
 import repository.RdvRepository;
-import session.sessionUtilisateur;
+import session.SessionUtilisateur;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -37,9 +37,9 @@ public class AccueilProfesseurController {
 
     @FXML
     public void initialize() {
-        String nomComplet = sessionUtilisateur.getInstance().getNomComplet();
+        String nomComplet = SessionUtilisateur.getInstance().getNomComplet();
         utilisateurLabel.setText("👤 " + nomComplet + " — Professeur");
-        bienvenuLabel.setText("Bonjour, " + sessionUtilisateur.getInstance().getUtilisateurConnecte().getPrenom() + " !");
+        bienvenuLabel.setText("Bonjour, " + SessionUtilisateur.getInstance().getUtilisateurConnecte().getPrenom() + " !");
 
         chargerStatistiques();
 
@@ -57,7 +57,7 @@ public class AccueilProfesseurController {
 
     @FXML
     private void handleDeconnexion() {
-        sessionUtilisateur.getInstance().deconnecter();
+        SessionUtilisateur.getInstance().deconnecter();
         naviguerVers("accueil/Login");
     }
 
@@ -66,7 +66,7 @@ public class AccueilProfesseurController {
     }
 
     private void chargerStatistiques() {
-        int idProf = sessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur();
+        int idProf = SessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur();
         List<DemandeFourniture> mesDemandes = demandeRepo.getDemandesParProfesseur(idProf);
 
         long validees = mesDemandes.stream().filter(d -> "Validé".equalsIgnoreCase(d.getStatut())).count();

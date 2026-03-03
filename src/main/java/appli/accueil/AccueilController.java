@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import session.sessionUtilisateur;
+import session.SessionUtilisateur;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -38,8 +38,8 @@ public class AccueilController {
 
     @FXML
     public void initialize() {
-        String nomComplet = sessionUtilisateur.getInstance().getNomComplet();
-        String role = sessionUtilisateur.getInstance().getRole();
+        String nomComplet = SessionUtilisateur.getInstance().getNomComplet();
+        String role = SessionUtilisateur.getInstance().getRole();
         utilisateurLabel.setText("👤 " + nomComplet + " — " + role);
 
         appliquerDroitsRole(role);
@@ -105,7 +105,7 @@ public class AccueilController {
 
     @FXML
     private void handleDeconnexion() {
-        sessionUtilisateur.getInstance().deconnecter();
+        SessionUtilisateur.getInstance().deconnecter();
         naviguerVers("accueil/Login");
     }
 

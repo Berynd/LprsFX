@@ -55,13 +55,7 @@ public class SalleController {
         
         // Charger les données
         chargerDonnees();
-        
-        // Debug : afficher le nombre de salles chargées
-        System.out.println("Nombre de salles chargées : " + sallesList.size());
-        for (Salle s : sallesList) {
-            System.out.println("Salle : ID=" + s.getIdSalle() + ", Nom=" + s.getNom());
-        }
-        
+
         // Listener sur la sélection
         salleTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -252,7 +246,7 @@ public class SalleController {
     }
 
     @FXML
-    public void handleretour(ActionEvent actionEvent) {
+    public void handleRetour(ActionEvent actionEvent) {
         StartApplication.goBack();
     }
 }

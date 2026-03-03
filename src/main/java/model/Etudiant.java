@@ -2,7 +2,7 @@ package model;
 
 public class Etudiant {
 
-    private int IdEtudiant;
+    private int idEtudiant;
     private String nom;
     private String prenom;
     private String email;
@@ -11,7 +11,7 @@ public class Etudiant {
     private String dernierDiplome;
 
     public Etudiant(int idEtudiant, String nom, String prenom, String email, String telephone, String adresse, String dernierDiplome) {
-        IdEtudiant = idEtudiant;
+        this.idEtudiant = idEtudiant;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -21,11 +21,11 @@ public class Etudiant {
     }
 
     public int getIdEtudiant() {
-        return IdEtudiant;
+        return idEtudiant;
     }
 
     public void setIdEtudiant(int idEtudiant) {
-        IdEtudiant = idEtudiant;
+        this.idEtudiant = idEtudiant;
     }
 
     public String getDernierDiplome() {
@@ -79,7 +79,7 @@ public class Etudiant {
     @Override
     public String toString() {
         return "Etudiant{" +
-                "IdEtudiant=" + IdEtudiant +
+                "idEtudiant=" + idEtudiant +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +

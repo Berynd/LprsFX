@@ -21,7 +21,7 @@ public class StartApplication extends Application {
                 StartApplication.class.getResource("accueil/LoginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
-        mainStage.setTitle("cailloux");
+        mainStage.setTitle("LprsFX");
         mainStage.setScene(scene);
 
         // 🔹 Plein écran forcé

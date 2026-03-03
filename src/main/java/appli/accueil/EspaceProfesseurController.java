@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import repository.DemandeFournitureRepository;
 import repository.RdvRepository;
-import session.sessionUtilisateur;
+import session.SessionUtilisateur;
 
 import java.io.IOException;
 import java.util.List;
@@ -44,7 +44,7 @@ public class EspaceProfesseurController {
     }
 
     private void chargerStatistiques() {
-        int idProf = sessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur();
+        int idProf = SessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur();
 
         List<?> mesDemandes = demandeRepo.getDemandesParProfesseur(idProf);
         long validees = mesDemandes.stream()

@@ -24,9 +24,8 @@ public class Database {
         Connection cnx = null;
         try {
             cnx = DriverManager.getConnection(getUrl(), UTILISATEUR, MOT_DE_PASSE);
-            System.out.println("Connection successful !");
         } catch (SQLException e) {
-            System.out.println("Connection error : " + e.getMessage());
+            System.err.println("Connection error : " + e.getMessage());
         }
         return cnx;
     }

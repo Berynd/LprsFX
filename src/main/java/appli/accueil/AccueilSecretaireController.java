@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import repository.DossierInscriptionRepository;
-import session.sessionUtilisateur;
+import session.SessionUtilisateur;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -32,9 +32,9 @@ public class AccueilSecretaireController {
 
     @FXML
     public void initialize() {
-        String nomComplet = sessionUtilisateur.getInstance().getNomComplet();
+        String nomComplet = SessionUtilisateur.getInstance().getNomComplet();
         utilisateurLabel.setText("👤 " + nomComplet + " — Secrétaire");
-        bienvenuLabel.setText("Bonjour, " + sessionUtilisateur.getInstance().getUtilisateurConnecte().getPrenom() + " !");
+        bienvenuLabel.setText("Bonjour, " + SessionUtilisateur.getInstance().getUtilisateurConnecte().getPrenom() + " !");
 
         chargerStatistiques();
 
@@ -51,7 +51,7 @@ public class AccueilSecretaireController {
 
     @FXML
     private void handleDeconnexion() {
-        sessionUtilisateur.getInstance().deconnecter();
+        SessionUtilisateur.getInstance().deconnecter();
         naviguerVers("accueil/Login");
     }
 

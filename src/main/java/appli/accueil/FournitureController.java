@@ -91,14 +91,7 @@ public class FournitureController {
         
         // Charger les données
         chargerDonnees();
-        
-        // Debug : afficher le nombre de fournitures chargées
-        System.out.println("=== DEBUG FOURNITURES ===");
-        System.out.println("Nombre de fournitures chargées : " + fournituresList.size());
-        for (Fourniture f : fournituresList) {
-            System.out.println("Fourniture : ID=" + f.getIdFourniture() + ", Libelle=" + f.getLibelle() + ", Stock=" + f.getStockActuel());
-        }
-        
+
         // Listener sur la sélection
         fournitureTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {

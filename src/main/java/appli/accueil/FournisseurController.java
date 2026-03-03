@@ -60,14 +60,7 @@ public class FournisseurController {
         
         // Charger les données
         chargerDonnees();
-        
-        // Debug : afficher le nombre de fournisseurs chargés
-        System.out.println("=== DEBUG FOURNISSEURS ===");
-        System.out.println("Nombre de fournisseurs chargés : " + fournisseursList.size());
-        for (Fournisseur f : fournisseursList) {
-            System.out.println("Fournisseur : ID=" + f.getIdFournisseur() + ", Nom=" + f.getNom() + ", Contact=" + f.getContact());
-        }
-        
+
         // Listener sur la sélection
         fournisseurTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {

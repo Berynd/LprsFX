@@ -11,7 +11,7 @@ import javafx.util.Duration;
 import repository.DemandeFournitureRepository;
 import repository.FournisseurRepository;
 import repository.FournitureRepository;
-import session.sessionUtilisateur;
+import session.SessionUtilisateur;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -36,9 +36,9 @@ public class AccueilGestionnaireController {
 
     @FXML
     public void initialize() {
-        String nomComplet = sessionUtilisateur.getInstance().getNomComplet();
+        String nomComplet = SessionUtilisateur.getInstance().getNomComplet();
         utilisateurLabel.setText("👤 " + nomComplet + " — Gestionnaire de stock");
-        bienvenuLabel.setText("Bonjour, " + sessionUtilisateur.getInstance().getUtilisateurConnecte().getPrenom() + " !");
+        bienvenuLabel.setText("Bonjour, " + SessionUtilisateur.getInstance().getUtilisateurConnecte().getPrenom() + " !");
 
         chargerStatistiques();
 
@@ -55,7 +55,7 @@ public class AccueilGestionnaireController {
 
     @FXML
     private void handleDeconnexion() {
-        sessionUtilisateur.getInstance().deconnecter();
+        SessionUtilisateur.getInstance().deconnecter();
         naviguerVers("accueil/Login");
     }
 

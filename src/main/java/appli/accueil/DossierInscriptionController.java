@@ -13,7 +13,7 @@ import model.Filiere;
 import repository.DossierInscriptionRepository;
 import repository.EtudiantRepository;
 import repository.FiliereRepository;
-import session.sessionUtilisateur;
+import session.SessionUtilisateur;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -162,7 +162,7 @@ public class DossierInscriptionController {
         d.setMotivation(motivationArea.getText().trim());
         d.setRefEtudiant(etudiantCombo.getValue().getIdEtudiant());
         d.setRefFiliere(filiereCombo.getValue().getIdFiliere());
-        d.setRefSecretaire(sessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur());
+        d.setRefSecretaire(SessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur());
 
         int id = dossierRepo.ajouterDossierInscription(d);
         if (id > 0) {
