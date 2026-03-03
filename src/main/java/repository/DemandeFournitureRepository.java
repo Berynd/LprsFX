@@ -110,6 +110,29 @@ public class DemandeFournitureRepository {
         }
     }
 
+    public int countByStatut(String statut) {
+        String sql = "SELECT COUNT(*) FROM demande_fourniture WHERE statut = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, statut);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return rs.getInt(1);
+        } catch (SQLException e) {
+            System.out.println("Erreur count demandes : " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public int countTotal() {
+        String sql = "SELECT COUNT(*) FROM demande_fourniture";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return rs.getInt(1);
+        } catch (SQLException e) {
+            System.out.println("Erreur count total demandes : " + e.getMessage());
+        }
+        return 0;
+    }
+
     private DemandeFourniture map(ResultSet rs) throws SQLException {
         DemandeFourniture d = new DemandeFourniture();
         d.setIdDemandeFourniture(rs.getInt("id_demande_fourniture"));
