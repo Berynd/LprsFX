@@ -64,13 +64,6 @@
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer vos fournisseurs" textFill="#95a5a6" wrapText="true" />
                 </VBox>
 
-                   <!-- Carte Fiches Étudiantes -->
-                <VBox fx:id="carteFicheEtudiante" alignment="CENTER" onMouseClicked="#handleFicheEtudiante" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(52, 152, 219, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.rowIndex="4">
-                    <Label style="-fx-font-size: 48px;" text="🎓" />
-                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Fiches Étudiantes" textFill="WHITE" />
-                    <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer les fiches étudiantes" textFill="#95a5a6" wrapText="true" />
-                </VBox>
-
                 <!-- Carte Gestion des Fournitures -->
                 <VBox fx:id="carteFournitures" alignment="CENTER" onMouseClicked="#handleGestionFournitures" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(46, 204, 113, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2">
                     <Label style="-fx-font-size: 48px;" text="📋" />
@@ -110,6 +103,13 @@
                     <Label style="-fx-font-size: 48px;" text="🏫" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Espace Secretaire" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Secretaire" textFill="#95a5a6" wrapText="true" />
+                </VBox>
+
+                                     <!-- Carte Fiches Étudiantes -->
+                <VBox fx:id="carteFicheEtudiante" alignment="CENTER" onMouseClicked="#handleFicheEtudiante" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(52, 152, 219, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.rowIndex="4">
+                    <Label style="-fx-font-size: 48px;" text="🎓" />
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Fiches Étudiantes" textFill="WHITE" />
+                    <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer les fiches étudiantes" textFill="#95a5a6" wrapText="true" />
                 </VBox>
    
                 <!-- Carte Filières -->
