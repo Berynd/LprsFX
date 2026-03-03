@@ -98,13 +98,18 @@ public class LoginController {
         try {
             // Adapter selon les rôles de votre application
             switch (role) {
-                case "Secrétaire":
-                case "Professeur":
-                case "Gestionnaire de stock":
                 case "Admin":
                     StartApplication.changeScene("accueil/Accueil");
                     break;
-                    
+                case "Secrétaire":
+                    StartApplication.changeScene("accueil/AccueilSecretaire");
+                    break;
+                case "Professeur":
+                    StartApplication.changeScene("accueil/AccueilProfesseur");
+                    break;
+                case "Gestionnaire de stock":
+                    StartApplication.changeScene("accueil/AccueilGestionnaire");
+                    break;
                 default:
                     System.out.println("Rôle inconnu : " + role);
                     erreur.setText("Rôle utilisateur invalide !");

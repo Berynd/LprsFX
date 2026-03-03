@@ -61,8 +61,8 @@ public class EspaceSecretaireController {
     }
 
     @FXML
-    public void handleRetour(ActionEvent event) throws IOException {
-        StartApplication.changeScene("accueil/Accueil");
+    public void handleRetour(ActionEvent event) {
+        StartApplication.goBack();
     }
 
     private void naviguerVers(String page) {

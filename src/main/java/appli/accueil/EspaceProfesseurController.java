@@ -35,8 +35,8 @@ public class EspaceProfesseurController {
     @FXML private void handleDossiers(MouseEvent e)    { naviguerVers("accueil/DossierInscription"); }
 
     @FXML
-    public void handleRetour(ActionEvent event) throws IOException {
-        StartApplication.changeScene("accueil/Accueil");
+    public void handleRetour(ActionEvent event) {
+        StartApplication.goBack();
     }
 
     private void naviguerVers(String page) {

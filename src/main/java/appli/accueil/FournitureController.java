@@ -440,7 +440,7 @@ public class FournitureController {
         messageLabel.setText("✅ " + message);
     }
     @FXML
-    public void handleRetour(ActionEvent actionEvent) throws IOException {
-        StartApplication.changeScene("accueil/Accueil");
+    public void handleRetour(ActionEvent actionEvent) {
+        StartApplication.goBack();
     }
 }

@@ -176,8 +176,8 @@ public class UtilisateurController {
     private void handleActualiser() { chargerDonnees(); afficherSucces("Données actualisées !"); }
 
     @FXML
-    public void handleRetour(ActionEvent event) throws IOException {
-        StartApplication.changeScene("accueil/Accueil");
+    public void handleRetour(ActionEvent event) {
+        StartApplication.goBack();
     }
 
     private void chargerDonnees() {

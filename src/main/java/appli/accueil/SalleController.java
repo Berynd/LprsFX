@@ -252,7 +252,7 @@ public class SalleController {
     }
 
     @FXML
-    public void handleretour(ActionEvent actionEvent) throws IOException {
-        StartApplication.changeScene("accueil/Accueil");
+    public void handleretour(ActionEvent actionEvent) {
+        StartApplication.goBack();
     }
 }
