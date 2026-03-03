@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -33,6 +34,8 @@
     
     <!-- Contenu central -->
     <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    style="-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;">
         <VBox alignment="TOP_CENTER" spacing="40.0" style="-fx-padding: 50;">
             
             <!-- En-tête de bienvenue -->
@@ -125,6 +128,7 @@
             </GridPane>
             
         </VBox>
+        </ScrollPane>
     </center>
     
     <!-- Pied de page -->
