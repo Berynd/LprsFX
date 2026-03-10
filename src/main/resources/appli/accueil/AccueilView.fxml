@@ -55,70 +55,70 @@
             <GridPane alignment="CENTER" hgap="25.0" vgap="25.0">
 
                 <!-- Ligne 0 -->
-                <VBox fx:id="carteSalles" alignment="CENTER" onMouseClicked="#handleGestionSalles" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(52, 152, 219, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <VBox fx:id="carteSalles" alignment="CENTER" onMouseClicked="#handleGestionSalles" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(255, 255, 255, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="0" GridPane.rowIndex="0">
                     <Label style="-fx-font-size: 48px;" text="🏢" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Gestion des Salles" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer les salles de cours" textFill="#95a5a6" wrapText="true" />
                 </VBox>
-                <VBox fx:id="carteFournisseurs" alignment="CENTER" onMouseClicked="#handleGestionFournisseurs" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(142, 68, 173, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <VBox fx:id="carteFournisseurs" alignment="CENTER" onMouseClicked="#handleGestionFournisseurs" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(0, 255, 0, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="0">
                     <Label style="-fx-font-size: 48px;" text="📦" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Fournisseurs" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer vos fournisseurs" textFill="#95a5a6" wrapText="true" />
                 </VBox>
 
                 <!-- Carte Gestion des Fournitures -->
-                <VBox fx:id="carteFournitures" alignment="CENTER" onMouseClicked="#handleGestionFournitures" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(46, 204, 113, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <VBox fx:id="carteFournitures" alignment="CENTER" onMouseClicked="#handleGestionFournitures" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(0, 255, 255, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="0">
                     <Label style="-fx-font-size: 48px;" text="📋" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Fournitures" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Stock et fournitures" textFill="#95a5a6" wrapText="true" />
                 </VBox>
 
                 <!-- Ligne 1 -->
-                <VBox fx:id="carteUtilisateurs" alignment="CENTER" onMouseClicked="#handleGestionUtilisateurs" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(230, 126, 34, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <VBox fx:id="carteUtilisateurs" alignment="CENTER" onMouseClicked="#handleGestionUtilisateurs" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(255, 255, 255, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="0" GridPane.rowIndex="1">
                     <Label style="-fx-font-size: 48px;" text="👥" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Utilisateurs" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer les comptes" textFill="#95a5a6" wrapText="true" />
                 </VBox>
-                <VBox fx:id="carteDemandes" alignment="CENTER" onMouseClicked="#handleDemandes" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(231, 76, 60, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <VBox fx:id="carteDemandes" alignment="CENTER" onMouseClicked="#handleDemandes" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(0, 255, 255, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <Label style="-fx-font-size: 48px;" text="📝" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Demandes" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Demandes de fournitures" textFill="#95a5a6" wrapText="true" />
                 </VBox>
-                <VBox fx:id="carteRendezVous" alignment="CENTER" onMouseClicked="#handleRendezVous" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(241, 196, 15, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <VBox fx:id="carteRendezVous" alignment="CENTER" onMouseClicked="#handleRendezVous" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(0, 0, 255, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <Label style="-fx-font-size: 48px;" text="📅" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Rendez-vous" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Planifier des RDV" textFill="#95a5a6" wrapText="true" />
                 </VBox>
 
                 <!-- Ligne 2 -->
-                <VBox fx:id="carteFicheEtudiante" alignment="CENTER" onMouseClicked="#handleFicheEtudiante" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(52, 152, 219, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <VBox fx:id="carteFicheEtudiante" alignment="CENTER" onMouseClicked="#handleFicheEtudiante" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(255, 0, 0, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="0" GridPane.rowIndex="2">
                     <Label style="-fx-font-size: 48px;" text="🎓" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Fiches Étudiantes" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gérer les fiches étudiantes" textFill="#95a5a6" wrapText="true" />
                 </VBox>
-                <VBox fx:id="carteDossiers" alignment="CENTER" onMouseClicked="#handleDossiers" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(230, 126, 34, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <VBox fx:id="carteDossiers" alignment="CENTER" onMouseClicked="#handleDossiers" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(255, 0, 0, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <Label style="-fx-font-size: 48px;" text="📄" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Dossiers Inscription" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Suivi des dossiers d'inscription" textFill="#95a5a6" wrapText="true" />
                 </VBox>
-                <VBox fx:id="carteFilieres" alignment="CENTER" onMouseClicked="#handleFilieres" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(39, 174, 96, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                    <Label style="-fx-font-size: 48px;" text="🏫" />
-                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Espace Secretaire" textFill="WHITE" />
-                    <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Secretaire" textFill="#95a5a6" wrapText="true" />
+                <VBox fx:id="carteFilieres" alignment="CENTER" onMouseClicked="#handleFilieres" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(255, 0, 0, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                    <Label style="-fx-font-size: 48px;" text="📚" />
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Filière" textFill="WHITE" />
+                    <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Gestion des filières" textFill="#95a5a6" wrapText="true" />
                 </VBox>
 
                 <!-- Ligne 3 : Espaces dédiés par rôle -->
-                <VBox fx:id="carteEspaceSecretaire" alignment="CENTER" onMouseClicked="#handleEspaceSecretaire" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(39, 174, 96, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <VBox fx:id="carteEspaceSecretaire" alignment="CENTER" onMouseClicked="#handleEspaceSecretaire" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(255, 0, 0, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="0" GridPane.rowIndex="3">
                     <Label style="-fx-font-size: 48px;" text="🏫" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Espace Secrétaire" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Tableau de bord secrétaire" textFill="#95a5a6" wrapText="true" />
                 </VBox>
-                <VBox fx:id="carteEspaceProfesseur" alignment="CENTER" onMouseClicked="#handleEspaceProfesseur" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(241, 196, 15, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <VBox fx:id="carteEspaceProfesseur" alignment="CENTER" onMouseClicked="#handleEspaceProfesseur" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(0, 0, 255, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <Label style="-fx-font-size: 48px;" text="👨‍🏫" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Espace Professeur" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Tableau de bord professeur" textFill="#95a5a6" wrapText="true" />
                 </VBox>
-                <VBox fx:id="carteEspaceGestionnaire" alignment="CENTER" onMouseClicked="#handleEspaceGestionnaire" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(142, 68, 173, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                <VBox fx:id="carteEspaceGestionnaire" alignment="CENTER" onMouseClicked="#handleEspaceGestionnaire" prefHeight="200.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08); -fx-background-radius: 15; -fx-padding: 30; -fx-border-color: rgba(0, 255, 0, 0.3); -fx-border-width: 1; -fx-border-radius: 15; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);" GridPane.columnIndex="2" GridPane.rowIndex="3">
                     <Label style="-fx-font-size: 48px;" text="📦" />
                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Espace Gestionnaire" textFill="WHITE" />
                     <Label style="-fx-font-size: 11px; -fx-text-alignment: center;" text="Tableau de bord stock" textFill="#95a5a6" wrapText="true" />
