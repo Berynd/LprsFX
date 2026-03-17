@@ -7,10 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import model.Utilisateur;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import repository.UtilisateurRepository;
-
-import java.io.IOException;
+import session.SessionUtilisateur;
 
 public class UtilisateurController {
 
@@ -26,6 +27,9 @@ public class UtilisateurController {
     @FXML private Button modifierBtn;
     @FXML private Button supprimerBtn;
     @FXML private Button annulerBtn;
+    @FXML private VBox mdpBox;
+    @FXML private PasswordField mdpField;
+    @FXML private PasswordField mdpConfirmField;
 
     @FXML private TableView<Utilisateur> utilisateurTableView;
     @FXML private TableColumn<Utilisateur, Integer> idColumn;
@@ -76,6 +80,10 @@ public class UtilisateurController {
             }
         });
 
+        boolean estAdmin = "Admin".equals(SessionUtilisateur.getInstance().getRole());
+        mdpBox.setVisible(estAdmin);
+        mdpBox.setManaged(estAdmin);
+
         ajouterBoutonsActions();
         chargerDonnees();
 
@@ -119,6 +127,15 @@ public class UtilisateurController {
         if (nomTextField.getText().trim().isEmpty()) { afficherErreur("Le nom est obligatoire !"); return; }
         if (prenomTextField.getText().trim().isEmpty()) { afficherErreur("Le prénom est obligatoire !"); return; }
         if (emailTextField.getText().trim().isEmpty()) { afficherErreur("L'email est obligatoire !"); return; }
+
+        String nouveauMdp = mdpField.getText();
+        if (!nouveauMdp.isEmpty()) {
+            if (!nouveauMdp.equals(mdpConfirmField.getText())) {
+                afficherErreur("Les mots de passe ne correspondent pas !"); return;
+            }
+            String mdpHashe = new BCryptPasswordEncoder().encode(nouveauMdp);
+            utilisateurRepo.changerMotDePasse(utilisateurSelectionne.getIdUtilisateur(), mdpHashe);
+        }
 
         utilisateurSelectionne.setNom(nomTextField.getText().trim());
         utilisateurSelectionne.setPrenom(prenomTextField.getText().trim());
@@ -199,6 +216,7 @@ public class UtilisateurController {
     private void viderFormulaire() {
         nomTextField.clear(); prenomTextField.clear(); emailTextField.clear();
         roleCombo.setValue(null);
+        mdpField.clear(); mdpConfirmField.clear();
         utilisateurSelectionne = null;
         ajouterBtn.setDisable(false);
         modifierBtn.setDisable(true);

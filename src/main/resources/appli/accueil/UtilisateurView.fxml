@@ -52,6 +52,12 @@
                     <ComboBox fx:id="roleCombo" maxWidth="Infinity" />
                 </VBox>
 
+                <VBox fx:id="mdpBox" spacing="4.0" visible="false" managed="false">
+                    <Label text="Nouveau mot de passe" style="-fx-text-fill: #8e44ad; -fx-font-weight: bold;" />
+                    <PasswordField fx:id="mdpField" promptText="Laisser vide pour ne pas modifier" />
+                    <PasswordField fx:id="mdpConfirmField" promptText="Confirmer le mot de passe" />
+                </VBox>
+
                 <Label fx:id="messageLabel" wrapText="true">
                     <font><Font name="Arial Bold" size="11.0" /></font>
                 </Label>

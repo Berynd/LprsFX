@@ -114,4 +114,15 @@ public class UtilisateurRepository extends BaseRepository {
             System.err.println("Erreur lors de la mise à jour de l'utilisateur : " + e.getMessage());
         }
     }
+
+    public void changerMotDePasse(int idUtilisateur, String nouveauMdpHashe) {
+        String sql = "UPDATE utilisateur SET mdp = ? WHERE id_utilisateur = ?";
+        try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
+            stmt.setString(1, nouveauMdpHashe);
+            stmt.setInt(2, idUtilisateur);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erreur lors du changement de mot de passe : " + e.getMessage());
+        }
+    }
 }
