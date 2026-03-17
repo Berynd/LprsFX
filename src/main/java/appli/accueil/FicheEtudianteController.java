@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import model.Etudiant;
 import repository.EtudiantRepository;
+import service.LogService;
 
 import java.io.IOException;
 
@@ -110,6 +111,7 @@ public class FicheEtudianteController {
 
         int id = etudiantRepository.ajouterEtudiant(e);
         if (id > 0) {
+            LogService.log("Étudiant ajouté : " + e.getNom() + " " + e.getPrenom(), "AJOUTER", "FicheEtudiante");
             afficherSucces("Étudiant ajouté avec succès !");
             chargerDonnees();
             viderFormulaire();
@@ -131,6 +133,7 @@ public class FicheEtudianteController {
         etudiantSelectionne.setDernierDiplome(diplomeTextField.getText().trim());
 
         if (etudiantRepository.modifierEtudiant(etudiantSelectionne)) {
+            LogService.log("Étudiant modifié : " + etudiantSelectionne.getNom() + " " + etudiantSelectionne.getPrenom(), "MODIFIER", "FicheEtudiante");
             afficherSucces("Étudiant modifié avec succès !");
             chargerDonnees();
             viderFormulaire();
@@ -153,6 +156,7 @@ public class FicheEtudianteController {
         alert.showAndWait().ifPresent(r -> {
             if (r == ButtonType.OK) {
                 if (etudiantRepository.supprimerEtudiant(etudiant.getIdEtudiant())) {
+                    LogService.log("Étudiant supprimé : " + etudiant.getNom() + " " + etudiant.getPrenom(), "SUPPRIMER", "FicheEtudiante");
                     afficherSucces("Étudiant supprimé !");
                     chargerDonnees();
                     viderFormulaire();

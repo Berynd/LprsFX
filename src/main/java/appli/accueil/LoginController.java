@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import model.Utilisateur;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import repository.UtilisateurRepository;
+import service.LogService;
 import session.SessionUtilisateur;
 
 import java.io.IOException;
@@ -76,6 +77,8 @@ public class LoginController {
                 
                 erreur.setStyle("-fx-text-fill: green;");
                 erreur.setText("Connexion réussie !");
+
+                LogService.log("Connexion réussie", "CONNEXION", "Login");
 
                 // Redirection selon le rôle
                 redirectionSelonRole(utilisateur.getRole());

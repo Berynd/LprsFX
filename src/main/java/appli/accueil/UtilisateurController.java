@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import model.Utilisateur;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import repository.UtilisateurRepository;
+import service.LogService;
 import session.SessionUtilisateur;
 
 public class UtilisateurController {
@@ -143,6 +144,7 @@ public class UtilisateurController {
         if (roleCombo.getValue() != null) utilisateurSelectionne.setRole(roleCombo.getValue());
 
         utilisateurRepo.mettreAJourUtilisateur(utilisateurSelectionne);
+        LogService.log("Utilisateur modifié : " + utilisateurSelectionne.getNom() + " " + utilisateurSelectionne.getPrenom(), "MODIFIER", "Utilisateurs");
         afficherSucces("Utilisateur modifié avec succès !");
         chargerDonnees();
         viderFormulaire();
@@ -162,6 +164,7 @@ public class UtilisateurController {
         alert.showAndWait().ifPresent(r -> {
             if (r == ButtonType.OK) {
                 utilisateurRepo.supprimerUtilisateurParEmail(u.getEmail());
+                LogService.log("Utilisateur supprimé : " + u.getNom() + " " + u.getPrenom(), "SUPPRIMER", "Utilisateurs");
                 afficherSucces("Utilisateur supprimé !");
                 chargerDonnees();
                 viderFormulaire();

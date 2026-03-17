@@ -13,6 +13,7 @@ import model.Filiere;
 import repository.DossierInscriptionRepository;
 import repository.EtudiantRepository;
 import repository.FiliereRepository;
+import service.LogService;
 import session.SessionUtilisateur;
 
 import java.io.IOException;
@@ -118,6 +119,7 @@ public class DossierInscriptionController {
                 validerBtn.setOnAction(e -> {
                     DossierInscription d = getTableView().getItems().get(getIndex());
                     if (dossierRepo.changerStatut(d.getIdDossierInscription(), "Validé")) {
+                        LogService.log("Dossier #" + d.getIdDossierInscription() + " validé", "VALIDER", "DossierInscription");
                         afficherSucces("Dossier validé !");
                         chargerDonnees();
                     }
@@ -126,6 +128,7 @@ public class DossierInscriptionController {
                 refuserBtn.setOnAction(e -> {
                     DossierInscription d = getTableView().getItems().get(getIndex());
                     if (dossierRepo.changerStatut(d.getIdDossierInscription(), "Refusé")) {
+                        LogService.log("Dossier #" + d.getIdDossierInscription() + " refusé", "REFUSER", "DossierInscription");
                         afficherSucces("Dossier refusé.");
                         chargerDonnees();
                     }
@@ -137,6 +140,7 @@ public class DossierInscriptionController {
                     alert.showAndWait().ifPresent(r -> {
                         if (r == ButtonType.YES) {
                             dossierRepo.supprimerDossierInscription(d.getIdDossierInscription());
+                            LogService.log("Dossier #" + d.getIdDossierInscription() + " supprimé", "SUPPRIMER", "DossierInscription");
                             chargerDonnees();
                         }
                     });
@@ -166,6 +170,7 @@ public class DossierInscriptionController {
 
         int id = dossierRepo.ajouterDossierInscription(d);
         if (id > 0) {
+            LogService.log("Dossier créé pour étudiant #" + d.getRefEtudiant(), "AJOUTER", "DossierInscription");
             afficherSucces("Dossier créé avec succès !");
             chargerDonnees();
             viderFormulaire();

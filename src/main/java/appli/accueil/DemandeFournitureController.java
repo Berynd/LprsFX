@@ -15,6 +15,7 @@ import repository.DemandeFournitureRepository;
 import repository.FournitureDemandeFournitureRepository;
 import repository.FournitureRepository;
 import repository.UtilisateurRepository;
+import service.LogService;
 import session.SessionUtilisateur;
 
 import java.io.IOException;
@@ -127,6 +128,7 @@ public class DemandeFournitureController {
                         fournitureRepo.retirerDuStock(fd.getRefFourniture(), fd.getQuantite());
                     }
                     demandeRepo.validerDemande(d.getIdDemandeFourniture());
+                    LogService.log("Demande #" + d.getIdDemandeFourniture() + " validée", "VALIDER", "DemandeFourniture");
                     afficherSucces("Demande validée et stocks mis à jour !");
                     chargerDonnees();
                 });
@@ -143,6 +145,7 @@ public class DemandeFournitureController {
                     dialog.setContentText("Raison :");
                     dialog.showAndWait().ifPresent(justif -> {
                         demandeRepo.refuserDemande(d.getIdDemandeFourniture(), justif);
+                        LogService.log("Demande #" + d.getIdDemandeFourniture() + " refusée", "REFUSER", "DemandeFourniture");
                         afficherSucces("Demande refusée.");
                         chargerDonnees();
                     });
@@ -155,6 +158,7 @@ public class DemandeFournitureController {
                         if (r == ButtonType.YES) {
                             junctionRepo.supprimerToutesFournituresDemande(d.getIdDemandeFourniture());
                             demandeRepo.supprimerDemande(d.getIdDemandeFourniture());
+                            LogService.log("Demande #" + d.getIdDemandeFourniture() + " supprimée", "SUPPRIMER", "DemandeFourniture");
                             chargerDonnees();
                         }
                     });
@@ -209,6 +213,7 @@ public class DemandeFournitureController {
             junctionRepo.ajouterFournitureADemande(idDemande, idFourniture, quantite);
         }
 
+        LogService.log("Demande créée #" + idDemande, "AJOUTER", "DemandeFourniture");
         afficherSucces("Demande envoyée avec succès !");
         selectedFournitures.clear();
         raisonArea.clear();

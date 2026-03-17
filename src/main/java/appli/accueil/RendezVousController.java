@@ -15,6 +15,7 @@ import repository.EtudiantRepository;
 import repository.RdvRepository;
 import repository.SalleRepository;
 import repository.UtilisateurRepository;
+import service.LogService;
 import session.SessionUtilisateur;
 
 import java.io.IOException;
@@ -109,6 +110,7 @@ public class RendezVousController {
                     alert.showAndWait().ifPresent(r -> {
                         if (r == ButtonType.YES) {
                             rdvRepo.supprimerRdv(rdv.getIdRdv());
+                            LogService.log("RDV #" + rdv.getIdRdv() + " annulé", "SUPPRIMER", "RendezVous");
                             chargerDonnees();
                         }
                     });
@@ -163,6 +165,7 @@ public class RendezVousController {
 
         int id = rdvRepo.ajouterRdv(rdv);
         if (id > 0) {
+            LogService.log("RDV créé le " + date + " " + demi + " salle " + salle.getNom(), "AJOUTER", "RendezVous");
             afficherSucces("Rendez-vous créé avec succès !");
             chargerDonnees();
             viderFormulaire();

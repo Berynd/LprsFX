@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import model.Fourniture;
 import repository.FournitureRepository;
+import service.LogService;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -195,6 +196,7 @@ public class FournitureController {
         );
         
         if (fournitureRepository.ajouterFourniture(nouvelleFourniture)) {
+            LogService.log("Fourniture ajoutée : " + nouvelleFourniture.getLibelle(), "AJOUTER", "Fournitures");
             afficherSucces("Fourniture ajoutée avec succès !");
             chargerDonnees();
             viderFormulaire();
@@ -240,6 +242,7 @@ public class FournitureController {
         fournitureSelectionnee.setStockActuel(stock);
         
         if (fournitureRepository.mettreAJourFourniture(fournitureSelectionnee)) {
+            LogService.log("Fourniture modifiée : " + fournitureSelectionnee.getLibelle(), "MODIFIER", "Fournitures");
             afficherSucces("Fourniture modifiée avec succès !");
             chargerDonnees();
             viderFormulaire();
@@ -290,6 +293,7 @@ public class FournitureController {
                 int quantite = Integer.parseInt(quantiteStr);
                 if (quantite > 0) {
                     if (fournitureRepository.ajouterAuStock(fourniture.getIdFourniture(), quantite)) {
+                        LogService.log("Stock ajouté +" + quantite + " : " + fourniture.getLibelle(), "STOCK+", "Fournitures");
                         afficherSucces("Stock augmenté de " + quantite + " unités !");
                         chargerDonnees();
                         viderFormulaire();
@@ -317,6 +321,7 @@ public class FournitureController {
                 int quantite = Integer.parseInt(quantiteStr);
                 if (quantite > 0) {
                     if (fournitureRepository.retirerDuStock(fourniture.getIdFourniture(), quantite)) {
+                        LogService.log("Stock retiré -" + quantite + " : " + fourniture.getLibelle(), "STOCK-", "Fournitures");
                         afficherSucces("Stock diminué de " + quantite + " unités !");
                         chargerDonnees();
                         viderFormulaire();
@@ -341,6 +346,7 @@ public class FournitureController {
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 if (fournitureRepository.supprimerFourniture(fourniture.getIdFourniture())) {
+                    LogService.log("Fourniture supprimée : " + fourniture.getLibelle(), "SUPPRIMER", "Fournitures");
                     afficherSucces("Fourniture supprimée avec succès !");
                     chargerDonnees();
                     viderFormulaire();

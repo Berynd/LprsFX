@@ -2,10 +2,11 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="appli.accueil.LogView"
+            fx:controller="appli.accueil.LogController"
             prefWidth="1000" prefHeight="600">
 
     <children>
@@ -13,8 +14,12 @@
         <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10"
               AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
 
-            <Label text="Logs"
-                   style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="← Retour" onAction="#handleRetour"
+                        style="-fx-background-color: #7f8c8d; -fx-text-fill: white;"/>
+                <Label text="Logs"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+            </HBox>
 
             <TableView fx:id="logTable" VBox.vgrow="ALWAYS">
 

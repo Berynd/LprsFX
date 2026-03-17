@@ -1,4 +1,5 @@
 package repository;
 
-public class Log {
-}
+/** @deprecated Remplacé par {@link LogRepository} */
+@Deprecated
+public class Log {}
