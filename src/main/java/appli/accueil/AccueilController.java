@@ -5,6 +5,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -18,6 +19,7 @@ import java.util.Locale;
 
 public class AccueilController {
 
+    @FXML private Hyperlink log;
     @FXML private Label utilisateurLabel;
     @FXML private Label dateHeureLabel;
 
@@ -102,6 +104,7 @@ public class AccueilController {
     @FXML private void handleEspaceSecretaire(MouseEvent e)    { naviguerVers("accueil/EspaceSecretaire"); }
     @FXML private void handleEspaceProfesseur(MouseEvent e)   { naviguerVers("accueil/EspaceProfesseur"); }
     @FXML private void handleEspaceGestionnaire(MouseEvent e) { naviguerVers("accueil/EspaceGestionnaire"); }
+    @FXML private void handleLog(MouseEvent e) { naviguerVers("accueil/Log"); }
 
     @FXML
     private void handleDeconnexion() {
@@ -123,4 +126,5 @@ public class AccueilController {
         dateHeure = dateHeure.substring(0, 1).toUpperCase() + dateHeure.substring(1);
         dateHeureLabel.setText("📅 " + dateHeure);
     }
+
 }
