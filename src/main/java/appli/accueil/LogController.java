@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import model.Log;
 import repository.LogRepository;
 
@@ -26,13 +25,18 @@ public class LogController {
 
     @FXML
     public void initialize() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("idLog"));
+        idColumn.setCellValueFactory(c ->
+            new javafx.beans.property.SimpleIntegerProperty(c.getValue().getIdLog()).asObject());
         heureColumn.setCellValueFactory(c ->
             new javafx.beans.property.SimpleStringProperty(c.getValue().getDateHeure().format(FMT)));
-        userColumn.setCellValueFactory(new PropertyValueFactory<>("nomUtilisateur"));
-        messageColumn.setCellValueFactory(new PropertyValueFactory<>("messageLog"));
-        actionColumn.setCellValueFactory(new PropertyValueFactory<>("action"));
-        pageColumn.setCellValueFactory(new PropertyValueFactory<>("page"));
+        userColumn.setCellValueFactory(c ->
+            new javafx.beans.property.SimpleStringProperty(c.getValue().getNomUtilisateur()));
+        messageColumn.setCellValueFactory(c ->
+            new javafx.beans.property.SimpleStringProperty(c.getValue().getMessageLog()));
+        actionColumn.setCellValueFactory(c ->
+            new javafx.beans.property.SimpleStringProperty(c.getValue().getAction()));
+        pageColumn.setCellValueFactory(c ->
+            new javafx.beans.property.SimpleStringProperty(c.getValue().getPage()));
 
         logTable.setItems(FXCollections.observableArrayList(logRepository.getTousLesLogs()));
     }

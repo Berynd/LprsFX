@@ -24,12 +24,12 @@
             <TableView fx:id="logTable" VBox.vgrow="ALWAYS">
 
                 <columns>
-                    <TableColumn text="ID" fx:id="idColumn"/>
-                    <TableColumn text="Heure" fx:id="heureColumn"/>
-                    <TableColumn text="Utilisateur" fx:id="userColumn"/>
-                    <TableColumn text="Message" fx:id="messageColumn"/>
-                    <TableColumn text="Action" fx:id="actionColumn"/>
-                    <TableColumn text="Page" fx:id="pageColumn"/>
+                    <TableColumn text="ID" fx:id="idColumn" prefWidth="50"/>
+                    <TableColumn text="Date / Heure" fx:id="heureColumn" prefWidth="160"/>
+                    <TableColumn text="Utilisateur" fx:id="userColumn" prefWidth="160"/>
+                    <TableColumn text="Message" fx:id="messageColumn" prefWidth="300"/>
+                    <TableColumn text="Action" fx:id="actionColumn" prefWidth="120"/>
+                    <TableColumn text="Page" fx:id="pageColumn" prefWidth="150"/>
                 </columns>
 
             </TableView>
