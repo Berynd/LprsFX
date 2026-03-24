@@ -38,6 +38,13 @@ public class FicheEtudianteController {
     @FXML private TableColumn<Etudiant, String> telephoneColumn;
     @FXML private TableColumn<Etudiant, Void> actionsColumn;
 
+<<<<<<< HEAD
+    @FXML
+    public void retour(ActionEvent actionEvent) throws IOException {
+        StartApplication.changeScene("accueil/Accueil");
+    }
+}
+=======
     private EtudiantRepository etudiantRepository;
     private ObservableList<Etudiant> etudiantsList;
     private Etudiant etudiantSelectionne;
@@ -250,3 +257,4 @@ public class FicheEtudianteController {
         messageLabel.setText("✅ " + msg);
     }
 }
+>>>>>>> a40b54cd3bccd58e5e00a7fd6a38f7ad495de99b

@@ -92,6 +92,23 @@ public class AccueilController {
 
     // --- Navigation ---
 
+<<<<<<< HEAD
+    @FXML
+    private void handleGestionUtilisateurs(MouseEvent event) {
+        naviguerVers("accueil/Utilisateur");
+    }
+
+    @FXML
+    private void handleDemandes(MouseEvent event) {
+        naviguerVers("accueil/DemandeFourniture");
+    }
+
+    @FXML
+    private void handleRendezVous(MouseEvent event) { naviguerVers("accueil/RendezVous"); }
+
+    @FXML
+    private void handleFicheEtudiante(MouseEvent event) { naviguerVers("accueil/FicheEtudiante"); }
+=======
     @FXML private void handleGestionSalles(MouseEvent e)      { naviguerVers("accueil/Salle"); }
     @FXML private void handleGestionFournisseurs(MouseEvent e) { naviguerVers("accueil/Fournisseur"); }
     @FXML private void handleGestionFournitures(MouseEvent e)  { naviguerVers("accueil/Fourniture"); }
@@ -105,6 +122,7 @@ public class AccueilController {
     @FXML private void handleEspaceProfesseur(MouseEvent e)   { naviguerVers("accueil/EspaceProfesseur"); }
     @FXML private void handleEspaceGestionnaire(MouseEvent e) { naviguerVers("accueil/EspaceGestionnaire"); }
     @FXML private void handleLog(MouseEvent e) { naviguerVers("accueil/Log"); }
+>>>>>>> a40b54cd3bccd58e5e00a7fd6a38f7ad495de99b
 
     @FXML
     private void handleDeconnexion() {

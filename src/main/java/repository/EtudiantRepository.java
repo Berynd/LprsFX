@@ -8,7 +8,15 @@ import java.util.List;
 
 public class EtudiantRepository extends BaseRepository {
 
+<<<<<<< HEAD
+    public EtudiantRepository() {
+        connection = Database.getConnexion();
+    }
+
+    public static int ajouterEtudiant(Etudiant etudiant) {
+=======
     public int ajouterEtudiant(Etudiant etudiant) {
+>>>>>>> a40b54cd3bccd58e5e00a7fd6a38f7ad495de99b
         String sql = "INSERT INTO etudiant (nom, prenom, email, telephone, adresse, dernier_diplome) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, etudiant.getNom());
@@ -29,6 +37,8 @@ public class EtudiantRepository extends BaseRepository {
         return -1;
     }
 
+<<<<<<< HEAD
+=======
     public List<Etudiant> getTousLesEtudiants() {
         List<Etudiant> list = new ArrayList<>();
         String sql = "SELECT * FROM etudiant ORDER BY nom, prenom";
@@ -70,6 +80,7 @@ public class EtudiantRepository extends BaseRepository {
         }
         return list;
     }
+>>>>>>> a40b54cd3bccd58e5e00a7fd6a38f7ad495de99b
 
     public boolean modifierEtudiant(Etudiant etudiant) {
         String sql = "UPDATE etudiant SET nom=?, prenom=?, email=?, telephone=?, adresse=?, dernier_diplome=? WHERE id_etudiant=?";

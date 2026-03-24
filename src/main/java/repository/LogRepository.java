@@ -1,5 +1,12 @@
 package repository;
 
+<<<<<<< HEAD
+public class LogRepository {
+}
+
+
+//TODO faire un bibliotheque avec les differents message d'erreur
+=======
 import model.Log;
 
 import java.sql.*;
@@ -44,3 +51,4 @@ public class LogRepository extends BaseRepository {
         return logs;
     }
 }
+>>>>>>> a40b54cd3bccd58e5e00a7fd6a38f7ad495de99b
