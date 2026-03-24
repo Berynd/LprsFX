@@ -9,7 +9,6 @@ module appli.lprsfx {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
-    requires com.almasb.fxgl.all;
     requires java.sql;
     requires spring.security.crypto;
     requires javafx.base;

@@ -12,19 +12,19 @@
 <BorderPane prefHeight="700.0" prefWidth="1000.0"
             style="-fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);"
             xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="appli.accueil.EspaceSecretaireController">
+            fx:controller="appli.accueil.EspaceGestionnaireController">
 
     <top>
         <HBox alignment="CENTER_LEFT" spacing="20.0"
               style="-fx-background-color: rgba(255,255,255,0.05); -fx-padding: 15 30; -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 0 0 1 0;">
             <Button onAction="#handleRetour" text="← Retour"
-                    style="-fx-background-color: rgba(255,255,255,0.08); -fx-text-fill: #95a5a6; -fx-border-color: rgba(255,255,255,0.15); -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 15; -fx-cursor: hand;" />
+                    style="-fx-background-color: rgba(255,255,255,0.08); -fx-text-fill: #95a5a6; -fx-border-color: rgba(255,255,255,0.15); -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 15; -fx-cursor: hand;"/>
             <Label style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-font-family: 'Segoe UI Semibold';"
-                   text="🏫  Espace Secrétaire" textFill="#00d4ff">
+                   text="📦  Espace Gestionnaire" textFill="#00d4ff">
                 <effect><DropShadow color="#00d4ff" radius="6" spread="0.1"/></effect>
             </Label>
             <Region HBox.hgrow="ALWAYS"/>
-            <Label style="-fx-font-size: 12px;" text="Gestion administrative" textFill="#95a5a6"/>
+            <Label style="-fx-font-size: 12px;" text="Gestion du stock et des fournitures" textFill="#95a5a6"/>
         </HBox>
     </top>
 
@@ -33,18 +33,15 @@
               style="-fx-background-color: rgba(255,255,255,0.03); -fx-padding: 25 15; -fx-border-color: rgba(255,255,255,0.08); -fx-border-width: 0 1 0 0;">
             <Label style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-padding: 0 0 8 5;" text="NAVIGATION" textFill="#546e7a"/>
 
-            <Button fx:id="carteCreeEtudiant" maxWidth="Infinity" onMouseClicked="#handleCreerEtudiant"
-                    text="🎓  Créer étudiant"
-                    style="-fx-background-color: rgba(52,152,219,0.12); -fx-text-fill: white; -fx-border-color: rgba(52,152,219,0.35); -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12 15; -fx-font-size: 13px; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
-            <Button fx:id="carteCreeDossierInscription" maxWidth="Infinity" onMouseClicked="#handleCreerUnDossierInscription"
-                    text="📄  Créer dossier"
-                    style="-fx-background-color: rgba(230,126,34,0.12); -fx-text-fill: white; -fx-border-color: rgba(230,126,34,0.35); -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12 15; -fx-font-size: 13px; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
-            <Button fx:id="carteListeEtudiants" maxWidth="Infinity" onMouseClicked="#handleListeDesEtudiants"
-                    text="👥  Liste étudiants"
-                    style="-fx-background-color: rgba(46,204,113,0.12); -fx-text-fill: white; -fx-border-color: rgba(46,204,113,0.35); -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12 15; -fx-font-size: 13px; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
-            <Button fx:id="carteListeDossiers" maxWidth="Infinity" onMouseClicked="#handleListeDesDossiers"
-                    text="🗂  Liste dossiers"
+            <Button maxWidth="Infinity" onMouseClicked="#handleFournisseurs"
+                    text="📦  Fournisseurs"
                     style="-fx-background-color: rgba(142,68,173,0.12); -fx-text-fill: white; -fx-border-color: rgba(142,68,173,0.35); -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12 15; -fx-font-size: 13px; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
+            <Button maxWidth="Infinity" onMouseClicked="#handleFournitures"
+                    text="📋  Fournitures"
+                    style="-fx-background-color: rgba(46,204,113,0.12); -fx-text-fill: white; -fx-border-color: rgba(46,204,113,0.35); -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12 15; -fx-font-size: 13px; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
+            <Button maxWidth="Infinity" onMouseClicked="#handleDemandes"
+                    text="📝  Demandes"
+                    style="-fx-background-color: rgba(231,76,60,0.12); -fx-text-fill: white; -fx-border-color: rgba(231,76,60,0.35); -fx-border-width: 1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12 15; -fx-font-size: 13px; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
 
             <Region VBox.vgrow="ALWAYS"/>
             <Separator style="-fx-background-color: rgba(255,255,255,0.08);"/>
@@ -53,36 +50,36 @@
 
     <center>
         <VBox spacing="25.0" style="-fx-padding: 35;">
-            <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="Vue d'ensemble — Dossiers d'inscription" textFill="WHITE"/>
+            <Label style="-fx-font-size: 15px; -fx-font-weight: bold;" text="Vue d'ensemble — Stock et approvisionnement" textFill="WHITE"/>
 
             <HBox spacing="20.0">
                 <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS"
                       style="-fx-background-color: rgba(255,255,255,0.07); -fx-background-radius: 15; -fx-border-color: rgba(46,204,113,0.35); -fx-border-width: 1; -fx-border-radius: 15; -fx-padding: 25;">
                     <effect><DropShadow color="rgba(0,0,0,0.3)" radius="12" spread="0.05"/></effect>
-                    <Label style="-fx-font-size: 30px;" text="✅"/>
-                    <Label fx:id="lblNbAccepte" style="-fx-font-size: 34px; -fx-font-weight: bold;" text="0" textFill="#2ecc71"/>
-                    <Label style="-fx-font-size: 11px;" text="Acceptés" textFill="#95a5a6"/>
+                    <Label style="-fx-font-size: 30px;" text="📋"/>
+                    <Label fx:id="lblNbFournitures" style="-fx-font-size: 34px; -fx-font-weight: bold;" text="0" textFill="#2ecc71"/>
+                    <Label style="-fx-font-size: 11px;" text="Total fournitures" textFill="#95a5a6"/>
                 </VBox>
                 <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS"
                       style="-fx-background-color: rgba(255,255,255,0.07); -fx-background-radius: 15; -fx-border-color: rgba(231,76,60,0.35); -fx-border-width: 1; -fx-border-radius: 15; -fx-padding: 25;">
                     <effect><DropShadow color="rgba(0,0,0,0.3)" radius="12" spread="0.05"/></effect>
-                    <Label style="-fx-font-size: 30px;" text="❌"/>
-                    <Label fx:id="lblNbRefuse" style="-fx-font-size: 34px; -fx-font-weight: bold;" text="0" textFill="#e74c3c"/>
-                    <Label style="-fx-font-size: 11px;" text="Refusés" textFill="#95a5a6"/>
+                    <Label style="-fx-font-size: 30px;" text="⚠"/>
+                    <Label fx:id="lblNbRupture" style="-fx-font-size: 34px; -fx-font-weight: bold;" text="0" textFill="#e74c3c"/>
+                    <Label style="-fx-font-size: 11px;" text="En rupture (≤ 5)" textFill="#95a5a6"/>
                 </VBox>
                 <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS"
-                      style="-fx-background-color: rgba(255,255,255,0.07); -fx-background-radius: 15; -fx-border-color: rgba(52,152,219,0.35); -fx-border-width: 1; -fx-border-radius: 15; -fx-padding: 25;">
+                      style="-fx-background-color: rgba(255,255,255,0.07); -fx-background-radius: 15; -fx-border-color: rgba(241,196,15,0.35); -fx-border-width: 1; -fx-border-radius: 15; -fx-padding: 25;">
                     <effect><DropShadow color="rgba(0,0,0,0.3)" radius="12" spread="0.05"/></effect>
                     <Label style="-fx-font-size: 30px;" text="⏳"/>
-                    <Label fx:id="lblNbEtudiants" style="-fx-font-size: 34px; -fx-font-weight: bold;" text="0" textFill="#3498db"/>
-                    <Label style="-fx-font-size: 11px;" text="En attente" textFill="#95a5a6"/>
+                    <Label fx:id="lblNbDemandesAttente" style="-fx-font-size: 34px; -fx-font-weight: bold;" text="0" textFill="#f1c40f"/>
+                    <Label style="-fx-font-size: 11px;" text="Demandes en attente" textFill="#95a5a6"/>
                 </VBox>
                 <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS"
-                      style="-fx-background-color: rgba(255,255,255,0.07); -fx-background-radius: 15; -fx-border-color: rgba(230,126,34,0.35); -fx-border-width: 1; -fx-border-radius: 15; -fx-padding: 25;">
+                      style="-fx-background-color: rgba(255,255,255,0.07); -fx-background-radius: 15; -fx-border-color: rgba(142,68,173,0.35); -fx-border-width: 1; -fx-border-radius: 15; -fx-padding: 25;">
                     <effect><DropShadow color="rgba(0,0,0,0.3)" radius="12" spread="0.05"/></effect>
-                    <Label style="-fx-font-size: 30px;" text="📁"/>
-                    <Label fx:id="lblNbDossier" style="-fx-font-size: 34px; -fx-font-weight: bold;" text="0" textFill="#e67e22"/>
-                    <Label style="-fx-font-size: 11px;" text="Total dossiers" textFill="#95a5a6"/>
+                    <Label style="-fx-font-size: 30px;" text="📦"/>
+                    <Label fx:id="lblNbFournisseurs" style="-fx-font-size: 34px; -fx-font-weight: bold;" text="0" textFill="#9b59b6"/>
+                    <Label style="-fx-font-size: 11px;" text="Fournisseurs" textFill="#95a5a6"/>
                 </VBox>
             </HBox>
 
@@ -91,7 +88,7 @@
                 <effect><DropShadow color="rgba(0,0,0,0.3)" radius="12" spread="0.05"/></effect>
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                     <Label style="-fx-font-size: 16px;" text="🔔"/>
-                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Notifications" textFill="#00d4ff"/>
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Résumé du stock" textFill="#00d4ff"/>
                 </HBox>
                 <Separator style="-fx-background-color: rgba(255,255,255,0.1);"/>
                 <Label fx:id="lblNotification" style="-fx-font-size: 13px;" text="Chargement..." textFill="#b0bec5" wrapText="true"/>
@@ -101,7 +98,7 @@
 
     <bottom>
         <HBox alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.3); -fx-padding: 15; -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 1 0 0 0;">
-            <Label style="-fx-font-size: 10px;" text="© 2026 LPRS Manager — Espace Secrétaire" textFill="#546e7a"/>
+            <Label style="-fx-font-size: 10px;" text="© 2026 LPRS Manager — Espace Gestionnaire de Stock" textFill="#546e7a"/>
         </HBox>
     </bottom>
 

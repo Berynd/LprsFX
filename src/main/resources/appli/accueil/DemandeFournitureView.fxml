@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.accueil.DemandeFournitureController">
+
+    <top>
+        <VBox style="-fx-background-color: #c0392b; -fx-padding: 20;">
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+                <Button text="← Retour" onAction="#handleRetour"
+                        style="-fx-background-color: #a93226; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
+                <VBox spacing="3.0" HBox.hgrow="ALWAYS">
+                    <Label text="Demandes de Fournitures" textFill="WHITE">
+                        <font><Font name="Arial Bold" size="24.0" /></font>
+                    </Label>
+                    <Label text="Professeurs : créer une demande  |  Gestionnaire : valider ou refuser" textFill="#ecf0f1">
+                        <font><Font name="Arial" size="12.0" /></font>
+                    </Label>
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.33">
+
+            <!-- Formulaire -->
+            <VBox spacing="10.0" style="-fx-background-color: #ecf0f1;">
+                <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+
+                <Label text="Nouvelle demande" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+
+                <VBox spacing="4.0">
+                    <Label text="Raison de la demande *" />
+                    <TextArea fx:id="raisonArea" prefRowCount="3" promptText="Expliquez pourquoi vous avez besoin de ces fournitures..." wrapText="true" />
+                </VBox>
+
+                <Separator />
+
+                <Label text="Ajouter des fournitures" style="-fx-font-weight: bold;" />
+
+                <VBox spacing="4.0">
+                    <Label text="Fourniture" />
+                    <ComboBox fx:id="fournitureCombo" maxWidth="Infinity" promptText="Choisir une fourniture" />
+                </VBox>
+                <VBox spacing="4.0">
+                    <Label text="Quantité" />
+                    <TextField fx:id="quantiteTextField" promptText="Ex: 10" />
+                </VBox>
+
+                <HBox spacing="8.0">
+                    <Button fx:id="ajouterFournitureBtn" text="+ Ajouter" onAction="#handleAjouterFourniture"
+                            style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="100.0" />
+                    <Button text="- Retirer" onAction="#handleRetirerFourniture"
+                            style="-fx-background-color: #95a5a6; -fx-text-fill: white;" prefWidth="100.0" />
+                </HBox>
+
+                <Label text="Fournitures sélectionnées :" style="-fx-font-size: 11px; -fx-font-weight: bold;" />
+                <ListView fx:id="fournituresListView" prefHeight="100.0" />
+
+                <Label fx:id="messageLabel" wrapText="true">
+                    <font><Font name="Arial Bold" size="11.0" /></font>
+                </Label>
+
+                <HBox spacing="8.0">
+                    <Button fx:id="envoyerBtn" text="Envoyer la demande" onAction="#handleEnvoyer"
+                            style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="145.0" />
+                    <Button fx:id="annulerBtn" text="Annuler" onAction="#handleAnnuler"
+                            style="-fx-background-color: #95a5a6; -fx-text-fill: white;" prefWidth="80.0" />
+                </HBox>
+            </VBox>
+
+            <!-- Table -->
+            <VBox spacing="10.0">
+                <padding><Insets bottom="20.0" left="10.0" right="20.0" top="20.0" /></padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label text="Liste des demandes" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+                    <Label fx:id="compteurLabel" text="(0 demande)" style="-fx-text-fill: #7f8c8d;" />
+                </HBox>
+
+                <TableView fx:id="demandeTableView" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idColumn" text="ID" prefWidth="45.0" />
+                        <TableColumn fx:id="dateColumn" text="Date" prefWidth="100.0" />
+                        <TableColumn fx:id="professeurColumn" text="Professeur" prefWidth="140.0" />
+                        <TableColumn fx:id="raisonColumn" text="Raison" prefWidth="150.0" />
+                        <TableColumn fx:id="statutColumn" text="Statut" prefWidth="90.0" />
+                        <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="200.0" />
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                    <Button text="Actualiser" onAction="#handleActualiser"
+                            style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+                </HBox>
+            </VBox>
+
+        </SplitPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #34495e; -fx-padding: 10;">
+            <Label fx:id="statutLabel" text="Prêt" textFill="WHITE">
+                <font><Font name="Arial" size="11.0" /></font>
+            </Label>
+        </HBox>
+    </bottom>
+
+</BorderPane>

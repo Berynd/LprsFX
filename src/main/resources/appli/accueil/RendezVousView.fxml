@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.accueil.RendezVousController">
+
+    <top>
+        <VBox style="-fx-background-color: #d4ac0d; -fx-padding: 20;">
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+                <Button text="← Retour" onAction="#handleRetour"
+                        style="-fx-background-color: #b7950b; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
+                <VBox spacing="3.0" HBox.hgrow="ALWAYS">
+                    <Label text="Gestion des Rendez-vous" textFill="WHITE">
+                        <font><Font name="Arial Bold" size="24.0" /></font>
+                    </Label>
+                    <Label text="Planifier des RDV professeur-étudiant avec vérification des salles" textFill="#ecf0f1">
+                        <font><Font name="Arial" size="12.0" /></font>
+                    </Label>
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.32">
+
+            <!-- Formulaire -->
+            <VBox spacing="12.0" style="-fx-background-color: #ecf0f1;">
+                <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+
+                <Label text="Nouveau rendez-vous" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+
+                <VBox spacing="4.0">
+                    <Label text="Date *" />
+                    <DatePicker fx:id="datePicker" maxWidth="Infinity" promptText="Choisir une date" />
+                </VBox>
+
+                <VBox spacing="4.0">
+                    <Label text="Demi-journée *" />
+                    <ComboBox fx:id="demiJourneeCombo" maxWidth="Infinity" promptText="Matin ou Après-midi" />
+                </VBox>
+
+                <VBox spacing="4.0">
+                    <Label text="Étudiant *" />
+                    <ComboBox fx:id="etudiantCombo" maxWidth="Infinity" promptText="Sélectionner un étudiant" />
+                </VBox>
+
+                <VBox spacing="4.0">
+                    <Label text="Salle *" />
+                    <ComboBox fx:id="salleCombo" maxWidth="Infinity" promptText="Sélectionner une salle" />
+                </VBox>
+
+                <Label fx:id="messageLabel" wrapText="true">
+                    <font><Font name="Arial Bold" size="11.0" /></font>
+                </Label>
+
+                <HBox spacing="8.0">
+                    <Button fx:id="verifierDispoBtn" text="Vérifier dispo" onAction="#handleVerifierDispo"
+                            style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="120.0" />
+                </HBox>
+
+                <HBox spacing="8.0">
+                    <Button fx:id="ajouterBtn" text="Créer RDV" onAction="#handleAjouter"
+                            style="-fx-background-color: #d4ac0d; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="110.0" />
+                    <Button fx:id="annulerBtn" text="Annuler" onAction="#handleAnnuler"
+                            style="-fx-background-color: #95a5a6; -fx-text-fill: white;" prefWidth="80.0" />
+                </HBox>
+
+                <Separator />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d; -fx-wrap-text: true;"
+                       text="Une demi-journée = une salle bloquée. Vérifiez la disponibilité avant de créer." />
+            </VBox>
+
+            <!-- Table -->
+            <VBox spacing="10.0">
+                <padding><Insets bottom="20.0" left="10.0" right="20.0" top="20.0" /></padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label text="Liste des rendez-vous" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+                    <Label fx:id="compteurLabel" text="(0 rendez-vous)" style="-fx-text-fill: #7f8c8d;" />
+                </HBox>
+
+                <TableView fx:id="rdvTableView" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idColumn" text="ID" prefWidth="45.0" />
+                        <TableColumn fx:id="dateColumn" text="Date" prefWidth="110.0" />
+                        <TableColumn fx:id="demiJourneeColumn" text="Demi-journée" prefWidth="100.0" />
+                        <TableColumn fx:id="etudiantColumn" text="Étudiant" prefWidth="150.0" />
+                        <TableColumn fx:id="salleColumn" text="Salle" prefWidth="100.0" />
+                        <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="110.0" />
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                    <Button text="Actualiser" onAction="#handleActualiser"
+                            style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+                </HBox>
+            </VBox>
+
+        </SplitPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #34495e; -fx-padding: 10;">
+            <Label fx:id="statutLabel" text="Prêt" textFill="WHITE">
+                <font><Font name="Arial" size="11.0" /></font>
+            </Label>
+        </HBox>
+    </bottom>
+
+</BorderPane>

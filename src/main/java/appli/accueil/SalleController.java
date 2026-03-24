@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import model.Salle;
 import repository.SalleRepository;
+import service.LogService;
 
 import java.io.IOException;
 
@@ -55,13 +56,7 @@ public class SalleController {
         
         // Charger les données
         chargerDonnees();
-        
-        // Debug : afficher le nombre de salles chargées
-        System.out.println("Nombre de salles chargées : " + sallesList.size());
-        for (Salle s : sallesList) {
-            System.out.println("Salle : ID=" + s.getIdSalle() + ", Nom=" + s.getNom());
-        }
-        
+
         // Listener sur la sélection
         salleTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -125,6 +120,7 @@ public class SalleController {
         Salle nouvelleSalle = new Salle(nomTextField.getText().trim());
         
         if (salleRepository.ajouterSalle(nouvelleSalle)) {
+            LogService.log("Salle ajoutée : " + nouvelleSalle.getNom(), "AJOUTER", "Salles");
             afficherSucces("Salle ajoutée avec succès !");
             chargerDonnees();
             viderFormulaire();
@@ -151,6 +147,7 @@ public class SalleController {
         salleSelectionnee.setNom(nomTextField.getText().trim());
         
         if (salleRepository.mettreAJourSalle(salleSelectionnee)) {
+            LogService.log("Salle modifiée : " + salleSelectionnee.getNom(), "MODIFIER", "Salles");
             afficherSucces("Salle modifiée avec succès !");
             chargerDonnees();
             viderFormulaire();
@@ -178,6 +175,7 @@ public class SalleController {
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 if (salleRepository.supprimerSalle(salle.getIdSalle())) {
+                    LogService.log("Salle supprimée : " + salle.getNom(), "SUPPRIMER", "Salles");
                     afficherSucces("Salle supprimée avec succès !");
                     chargerDonnees();
                     viderFormulaire();
@@ -252,7 +250,7 @@ public class SalleController {
     }
 
     @FXML
-    public void retour(ActionEvent actionEvent) throws IOException {
-        StartApplication.changeScene("accueil/Accueil");
+    public void handleRetour(ActionEvent actionEvent) {
+        StartApplication.goBack();
     }
 }

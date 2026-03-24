@@ -10,7 +10,8 @@ import javafx.scene.control.TextField;
 import model.Utilisateur;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import repository.UtilisateurRepository;
-import session.sessionUtilisateur;
+import service.LogService;
+import session.SessionUtilisateur;
 
 import java.io.IOException;
 
@@ -70,15 +71,14 @@ public class LoginController {
             }
 
             // Vérifier le mot de passe avec BCrypt
-            if (encoder.matches(mdp.getText(), utilisateur.getmdp())) {
+            if (encoder.matches(mdp.getText(), utilisateur.getMdp())) {
                 // ✅ Connexion réussie
-                System.out.println("Connexion réussie pour : " + utilisateur.getEmail());
-                
-                // Sauvegarder la session utilisateur
-                sessionUtilisateur.getInstance().setUtilisateurConnecte(utilisateur);
+                SessionUtilisateur.getInstance().setUtilisateurConnecte(utilisateur);
                 
                 erreur.setStyle("-fx-text-fill: green;");
                 erreur.setText("Connexion réussie !");
+
+                LogService.log("Connexion réussie", "CONNEXION", "Login");
 
                 // Redirection selon le rôle
                 redirectionSelonRole(utilisateur.getRole());
@@ -98,32 +98,19 @@ public class LoginController {
         try {
             // Adapter selon les rôles de votre application
             switch (role) {
-                case "Secrétaire":
-                    // TODO: Remplacer par la vraie page
-                    System.out.println("Redirection vers interface Secrétaire");
-                    // StartApplication.changeScene("secretaire/Accueil");
-                    break;
-                    
-                case "Professeur":
-                    // TODO: Remplacer par la vraie page
-                    System.out.println("Redirection vers interface Professeur");
-                    StartApplication.changeScene("accueil/Accueil");
-                    break;
-                    
-                case "Gestionnaire de stock":
-                    // TODO: Remplacer par la vraie page
-                    System.out.println("Redirection vers interface Gestionnaire");
-                    // StartApplication.changeScene("gestionnaire/Accueil");
-                    break;
-
                 case "Admin":
-                    // TODO: Remplacer par la vraie page
-                    System.out.println("Redirection vers interface Admin");
                     StartApplication.changeScene("accueil/Accueil");
                     break;
-                    
+                case "Secrétaire":
+                    StartApplication.changeScene("accueil/AccueilSecretaire");
+                    break;
+                case "Professeur":
+                    StartApplication.changeScene("accueil/AccueilProfesseur");
+                    break;
+                case "Gestionnaire de stock":
+                    StartApplication.changeScene("accueil/AccueilGestionnaire");
+                    break;
                 default:
-                    System.out.println("Rôle inconnu : " + role);
                     erreur.setText("Rôle utilisateur invalide !");
             }
         } catch (Exception e) {

@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import model.Fournisseur;
 import repository.FournisseurRepository;
+import service.LogService;
 
 import java.io.IOException;
 
@@ -60,14 +61,7 @@ public class FournisseurController {
         
         // Charger les données
         chargerDonnees();
-        
-        // Debug : afficher le nombre de fournisseurs chargés
-        System.out.println("=== DEBUG FOURNISSEURS ===");
-        System.out.println("Nombre de fournisseurs chargés : " + fournisseursList.size());
-        for (Fournisseur f : fournisseursList) {
-            System.out.println("Fournisseur : ID=" + f.getIdFournisseur() + ", Nom=" + f.getNom() + ", Contact=" + f.getContact());
-        }
-        
+
         // Listener sur la sélection
         fournisseurTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -133,6 +127,7 @@ public class FournisseurController {
         );
         
         if (fournisseurRepository.ajouterFournisseur(nouveauFournisseur)) {
+            LogService.log("Fournisseur ajouté : " + nouveauFournisseur.getNom(), "AJOUTER", "Fournisseurs");
             afficherSucces("Fournisseur ajouté avec succès !");
             chargerDonnees();
             viderFormulaire();
@@ -165,6 +160,7 @@ public class FournisseurController {
         fournisseurSelectionne.setContact(contactTextField.getText().trim());
         
         if (fournisseurRepository.mettreAJourFournisseur(fournisseurSelectionne)) {
+            LogService.log("Fournisseur modifié : " + fournisseurSelectionne.getNom(), "MODIFIER", "Fournisseurs");
             afficherSucces("Fournisseur modifié avec succès !");
             chargerDonnees();
             viderFormulaire();
@@ -192,6 +188,7 @@ public class FournisseurController {
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 if (fournisseurRepository.supprimerFournisseur(fournisseur.getIdFournisseur())) {
+                    LogService.log("Fournisseur supprimé : " + fournisseur.getNom(), "SUPPRIMER", "Fournisseurs");
                     afficherSucces("Fournisseur supprimé avec succès !");
                     chargerDonnees();
                     viderFormulaire();
@@ -269,7 +266,7 @@ public class FournisseurController {
     }
 
     @FXML
-    public void handleRetour(ActionEvent actionEvent) throws IOException {
-        StartApplication.changeScene("accueil/Accueil");
+    public void handleRetour(ActionEvent actionEvent) {
+        StartApplication.goBack();
     }
 }
