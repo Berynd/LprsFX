@@ -14,6 +14,13 @@ import service.LogService;
 
 import java.io.IOException;
 
+/**
+ * Controller de la gestion des salles (SalleView.fxml).
+ *
+ * CRUD simple sur les salles de l'établissement (utilisées pour les rendez-vous).
+ * Vérifie l'unicité du nom avant l'insertion via SalleRepository.salleExiste().
+ * Toutes les opérations sont journalisées via LogService.
+ */
 public class SalleController {
 
     @FXML private TextField nomTextField;

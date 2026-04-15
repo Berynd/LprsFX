@@ -11,8 +11,8 @@ public class CommandeFournitureRepository extends BaseRepository {
     public int ajouterCommande(CommandeFourniture commande) {
         String sql = "INSERT INTO commande_fourniture (date, statut, ref_gestionnaire, ref_fournisseur) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setString(1, commande.getDate());
-            stmt.setString(2, commande.getStatus());
+            stmt.setDate(1, Date.valueOf(commande.getDate()));
+            stmt.setString(2, commande.getStatut());
             stmt.setInt(3, commande.getRefGestionnaire());
             stmt.setInt(4, commande.getRefFournisseur());
             int rows = stmt.executeUpdate();
@@ -66,8 +66,9 @@ public class CommandeFournitureRepository extends BaseRepository {
     private CommandeFourniture map(ResultSet rs) throws SQLException {
         CommandeFourniture c = new CommandeFourniture();
         c.setIdCommandeFourniture(rs.getInt("id_commande_fourniture"));
-        c.setDate(rs.getString("date"));
-        c.setStatus(rs.getString("statut"));
+        Date date = rs.getDate("date");
+        c.setDate(date != null ? date.toLocalDate() : null);
+        c.setStatut(rs.getString("statut"));
         c.setJustificationRefus(rs.getString("justification_refus"));
         c.setRefGestionnaire(rs.getInt("ref_gestionnaire"));
         c.setRefFournisseur(rs.getInt("ref_fournisseur"));

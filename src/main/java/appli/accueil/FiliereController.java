@@ -12,6 +12,14 @@ import repository.FiliereRepository;
 
 import java.io.IOException;
 
+/**
+ * Controller de la gestion des filières (FiliereView.fxml).
+ *
+ * CRUD simple sur les filières de l'établissement.
+ * Les filières sont référencées par les dossiers d'inscription ; une suppression
+ * peut donc impacter des dossiers existants (avertissement dans la confirmation).
+ * La recherche est effectuée en mémoire (pas de requête BDD supplémentaire).
+ */
 public class FiliereController {
 
     @FXML private TextField nomTextField;

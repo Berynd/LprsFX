@@ -18,6 +18,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * Controller de l'accueil dédié au gestionnaire de stock (AccueilGestionnaireView.fxml).
+ *
+ * Variante de AccueilView réservée au rôle Gestionnaire de stock. Affiche :
+ *  - Le nom complet et le rôle de l'utilisateur connecté
+ *  - Une horloge temps réel (mise à jour toutes les secondes)
+ *  - Les statistiques stock (total fournitures, ruptures ≤5, demandes en attente, fournisseurs)
+ *  - Des cartes de navigation vers ses modules (Fournisseurs, Fournitures, Demandes, EspaceGestionnaire)
+ */
 public class AccueilGestionnaireController {
 
     private final FournitureRepository fournitureRepo     = new FournitureRepository();
@@ -60,7 +69,7 @@ public class AccueilGestionnaireController {
     }
 
     private void naviguerVers(String page) {
-        try { StartApplication.changeScene(page); } catch (IOException e) { e.printStackTrace(); }
+        try { StartApplication.changeScene(page); } catch (IOException e) { System.err.println("Erreur navigation : " + e.getMessage()); }
     }
 
     private void chargerStatistiques() {

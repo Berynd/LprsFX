@@ -8,8 +8,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Repository gérant la persistance des fournitures et de leur stock.
+ *
+ * Méthodes clés de gestion de stock :
+ *  - ajouterAuStock()   : incrémente le stock (réapprovisionnement)
+ *  - retirerDuStock()   : décrémente le stock (validation d'une demande)
+ *                         avec garde : ne retire que si stock >= quantité demandée
+ *  - getFournituresEnRupture() : retourne les articles sous un seuil donné
+ */
 public class FournitureRepository extends BaseRepository {
 
+    /** Insère une nouvelle fourniture. Retourne true si l'insertion a réussi. */
     public boolean ajouterFourniture(Fourniture fourniture) {
         String sql = "INSERT INTO fourniture (libelle, description, stock_actuel) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
@@ -23,6 +33,7 @@ public class FournitureRepository extends BaseRepository {
         }
     }
 
+    /** Retourne une fourniture par son id, ou null si introuvable. */
     public Fourniture getFournitureParId(int id) {
         String sql = "SELECT * FROM fourniture WHERE id_fourniture = ?";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
@@ -39,6 +50,7 @@ public class FournitureRepository extends BaseRepository {
         return null;
     }
 
+    /** Retourne toutes les fournitures triées par libellé. */
     public List<Fourniture> getToutesLesFournitures() {
         List<Fourniture> fournitures = new ArrayList<>();
         String sql = "SELECT * FROM fourniture ORDER BY libelle";
@@ -54,6 +66,7 @@ public class FournitureRepository extends BaseRepository {
         return fournitures;
     }
 
+    /** Met à jour le libellé, la description et le stock d'une fourniture. */
     public boolean mettreAJourFourniture(Fourniture fourniture) {
         String sql = "UPDATE fourniture SET libelle = ?, description = ?, stock_actuel = ? WHERE id_fourniture = ?";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
@@ -68,6 +81,7 @@ public class FournitureRepository extends BaseRepository {
         }
     }
 
+    /** Supprime une fourniture par son id. */
     public boolean supprimerFourniture(int id) {
         String sql = "DELETE FROM fourniture WHERE id_fourniture = ?";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
@@ -79,6 +93,7 @@ public class FournitureRepository extends BaseRepository {
         }
     }
 
+    /** Recherche des fournitures dont le libellé contient le terme donné. */
     public List<Fourniture> rechercherFournitureParLibelle(String libelle) {
         List<Fourniture> fournitures = new ArrayList<>();
         String sql = "SELECT * FROM fourniture WHERE libelle LIKE ? ORDER BY libelle";
@@ -96,6 +111,12 @@ public class FournitureRepository extends BaseRepository {
         return fournitures;
     }
 
+    /**
+     * Retourne les fournitures dont le stock est inférieur ou égal au seuil donné.
+     * Utilisé par le tableau de bord du gestionnaire pour signaler les ruptures.
+     *
+     * @param seuil stock minimum en dessous duquel une fourniture est considérée en rupture
+     */
     public List<Fourniture> getFournituresEnRupture(int seuil) {
         List<Fourniture> fournitures = new ArrayList<>();
         String sql = "SELECT * FROM fourniture WHERE stock_actuel <= ? ORDER BY stock_actuel";
@@ -113,6 +134,7 @@ public class FournitureRepository extends BaseRepository {
         return fournitures;
     }
 
+    /** Remplace directement la valeur du stock (sans tenir compte de la valeur actuelle). */
     public boolean mettreAJourStock(int idFourniture, int nouvelleQuantite) {
         String sql = "UPDATE fourniture SET stock_actuel = ? WHERE id_fourniture = ?";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
@@ -125,6 +147,7 @@ public class FournitureRepository extends BaseRepository {
         }
     }
 
+    /** Incrémente le stock de la quantité donnée (réapprovisionnement). */
     public boolean ajouterAuStock(int idFourniture, int quantiteAAjouter) {
         String sql = "UPDATE fourniture SET stock_actuel = stock_actuel + ? WHERE id_fourniture = ?";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
@@ -137,12 +160,21 @@ public class FournitureRepository extends BaseRepository {
         }
     }
 
+    /**
+     * Décrémente le stock de la quantité donnée.
+     * La requête SQL inclut une garde (AND stock_actuel >= quantite) pour éviter
+     * de passer en négatif : si le stock est insuffisant, aucune ligne n'est modifiée
+     * et la méthode retourne false.
+     *
+     * @return true si le stock a bien été décrémenté, false si stock insuffisant
+     */
     public boolean retirerDuStock(int idFourniture, int quantiteARetirer) {
+        // La condition "AND stock_actuel >= ?" empêche de passer le stock en négatif
         String sql = "UPDATE fourniture SET stock_actuel = stock_actuel - ? WHERE id_fourniture = ? AND stock_actuel >= ?";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
             stmt.setInt(1, quantiteARetirer);
             stmt.setInt(2, idFourniture);
-            stmt.setInt(3, quantiteARetirer);
+            stmt.setInt(3, quantiteARetirer); // garde anti-négatif
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println("Erreur lors du retrait du stock : " + e.getMessage());

@@ -14,6 +14,18 @@ import repository.UtilisateurRepository;
 import service.LogService;
 import session.SessionUtilisateur;
 
+/**
+ * Controller de la gestion des utilisateurs (UtilisateurView.fxml).
+ *
+ * Accessible uniquement aux administrateurs depuis AccueilView.
+ * Fonctionnalités :
+ *  - Modifier les informations d'un compte (nom, prénom, email, rôle)
+ *  - Changer le mot de passe : haché en BCrypt avant envoi en BDD
+ *  - Supprimer un compte (action irréversible avec confirmation)
+ *  - Recherche en mémoire sur nom/prénom/email
+ *  - Le bloc mot de passe (mdpBox) est visible uniquement pour le rôle Admin
+ *  - Les rôles sont colorés dans la colonne (Admin=violet, Professeur=bleu, …)
+ */
 public class UtilisateurController {
 
     @FXML private TextField nomTextField;
@@ -81,6 +93,7 @@ public class UtilisateurController {
             }
         });
 
+        // Le bloc mot de passe n'est affiché que pour les administrateurs
         boolean estAdmin = "Admin".equals(SessionUtilisateur.getInstance().getRole());
         mdpBox.setVisible(estAdmin);
         mdpBox.setManaged(estAdmin);
@@ -122,6 +135,10 @@ public class UtilisateurController {
         });
     }
 
+    /**
+     * Sauvegarde les modifications de l'utilisateur sélectionné.
+     * Si un nouveau mot de passe est renseigné, il est haché en BCrypt avant d'être stocké.
+     */
     @FXML
     private void handleModifier() {
         if (utilisateurSelectionne == null) { afficherErreur("Sélectionnez un utilisateur !"); return; }

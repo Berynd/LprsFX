@@ -6,17 +6,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Repository gérant la persistance des étudiants.
+ *
+ * Un étudiant est un candidat à l'inscription ; il n'est pas un utilisateur
+ * de l'application (pas de compte, pas de mot de passe).
+ */
 public class EtudiantRepository extends BaseRepository {
 
-<<<<<<< HEAD
-    public EtudiantRepository() {
-        connection = Database.getConnexion();
-    }
-
-    public static int ajouterEtudiant(Etudiant etudiant) {
-=======
+    /**
+     * Insère un nouvel étudiant et retourne l'id généré par la base.
+     *
+     * @return l'id du nouvel étudiant, ou -1 en cas d'erreur
+     */
     public int ajouterEtudiant(Etudiant etudiant) {
->>>>>>> a40b54cd3bccd58e5e00a7fd6a38f7ad495de99b
         String sql = "INSERT INTO etudiant (nom, prenom, email, telephone, adresse, dernier_diplome) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, etudiant.getNom());
@@ -27,6 +30,7 @@ public class EtudiantRepository extends BaseRepository {
             stmt.setString(6, etudiant.getDernierDiplome());
             int affectedRows = stmt.executeUpdate();
             if (affectedRows > 0) {
+                // Récupération de l'id auto-incrémenté généré par MySQL
                 try (ResultSet keys = stmt.getGeneratedKeys()) {
                     if (keys.next()) return keys.getInt(1);
                 }
@@ -37,8 +41,7 @@ public class EtudiantRepository extends BaseRepository {
         return -1;
     }
 
-<<<<<<< HEAD
-=======
+    /** Retourne tous les étudiants triés par nom puis prénom. */
     public List<Etudiant> getTousLesEtudiants() {
         List<Etudiant> list = new ArrayList<>();
         String sql = "SELECT * FROM etudiant ORDER BY nom, prenom";
@@ -53,6 +56,7 @@ public class EtudiantRepository extends BaseRepository {
         return list;
     }
 
+    /** Retourne un étudiant par son id, ou null si introuvable. */
     public Etudiant getEtudiantById(int id) {
         String sql = "SELECT * FROM etudiant WHERE id_etudiant = ?";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
@@ -66,12 +70,18 @@ public class EtudiantRepository extends BaseRepository {
         return null;
     }
 
+    /**
+     * Recherche des étudiants par nom, prénom ou email (recherche partielle).
+     * Utilisé par la barre de recherche de FicheEtudianteView.
+     */
     public List<Etudiant> rechercherEtudiant(String terme) {
         List<Etudiant> list = new ArrayList<>();
         String sql = "SELECT * FROM etudiant WHERE nom LIKE ? OR prenom LIKE ? OR email LIKE ? ORDER BY nom";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
             String p = "%" + terme + "%";
-            stmt.setString(1, p); stmt.setString(2, p); stmt.setString(3, p);
+            stmt.setString(1, p);
+            stmt.setString(2, p);
+            stmt.setString(3, p);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) list.add(map(rs));
             }
@@ -80,8 +90,8 @@ public class EtudiantRepository extends BaseRepository {
         }
         return list;
     }
->>>>>>> a40b54cd3bccd58e5e00a7fd6a38f7ad495de99b
 
+    /** Met à jour toutes les informations d'un étudiant existant. */
     public boolean modifierEtudiant(Etudiant etudiant) {
         String sql = "UPDATE etudiant SET nom=?, prenom=?, email=?, telephone=?, adresse=?, dernier_diplome=? WHERE id_etudiant=?";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
@@ -99,6 +109,7 @@ public class EtudiantRepository extends BaseRepository {
         }
     }
 
+    /** Supprime un étudiant par son id. */
     public boolean supprimerEtudiant(int idEtudiant) {
         String sql = "DELETE FROM etudiant WHERE id_etudiant = ?";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
@@ -110,6 +121,7 @@ public class EtudiantRepository extends BaseRepository {
         }
     }
 
+    /** Convertit une ligne ResultSet en objet Etudiant. */
     private Etudiant map(ResultSet rs) throws SQLException {
         return new Etudiant(
             rs.getInt("id_etudiant"),

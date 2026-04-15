@@ -20,6 +20,15 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Controller de la gestion des dossiers d'inscription (DossierInscriptionView.fxml).
+ *
+ * Permet de créer un dossier en choisissant un étudiant et une filière,
+ * et de valider/refuser/supprimer les dossiers existants via des boutons inline.
+ * Le statut est coloré (vert = validé, rouge = refusé, orange = en attente).
+ * La date de création est automatiquement définie à aujourd'hui (LocalDate.now()).
+ * L'id du secrétaire connecté est automatiquement renseigné depuis SessionUtilisateur.
+ */
 public class DossierInscriptionController {
 
     @FXML private ComboBox<Etudiant> etudiantCombo;
@@ -56,7 +65,7 @@ public class DossierInscriptionController {
         tousEtudiants = etudiantRepo.getTousLesEtudiants();
         tousFillieres = filiereRepo.getToutesLesFilieres();
 
-        // Remplir les combos
+        // Remplir les ComboBox avec les données chargées une seule fois en mémoire
         etudiantCombo.setItems(FXCollections.observableArrayList(tousEtudiants));
         etudiantCombo.setConverter(new javafx.util.StringConverter<>() {
             @Override public String toString(Etudiant e) { return e == null ? "" : e.getNom() + " " + e.getPrenom(); }
@@ -72,8 +81,10 @@ public class DossierInscriptionController {
         // Configurer colonnes
         idColumn.setCellValueFactory(c ->
                 new javafx.beans.property.SimpleIntegerProperty(c.getValue().getIdDossierInscription()).asObject());
-        dateColumn.setCellValueFactory(c ->
-                new javafx.beans.property.SimpleStringProperty(c.getValue().getDateCreation()));
+        dateColumn.setCellValueFactory(c -> {
+            java.time.LocalDate d = c.getValue().getDateCreation();
+            return new javafx.beans.property.SimpleStringProperty(d != null ? d.toString() : "");
+        });
         statutColumn.setCellValueFactory(c ->
                 new javafx.beans.property.SimpleStringProperty(c.getValue().getStatut()));
         etudiantColumn.setCellValueFactory(c -> {
@@ -105,6 +116,11 @@ public class DossierInscriptionController {
         chargerDonnees();
     }
 
+    /**
+     * Injecte trois boutons d'action inline dans chaque ligne :
+     * ✅ Valider, ❌ Refuser, 🗑 Supprimer.
+     * Valider/Refuser changent le statut via le repository.
+     */
     private void ajouterBoutonsActions() {
         actionsColumn.setCellFactory(param -> new TableCell<>() {
             private final Button validerBtn = new Button("✅");
@@ -154,6 +170,7 @@ public class DossierInscriptionController {
         });
     }
 
+    /** Crée un dossier d'inscription avec les valeurs des combos et de la zone motivation. */
     @FXML
     private void handleAjouter() {
         if (etudiantCombo.getValue() == null) { afficherErreur("Sélectionnez un étudiant !"); return; }
@@ -161,7 +178,7 @@ public class DossierInscriptionController {
         if (motivationArea.getText().trim().isEmpty()) { afficherErreur("La motivation est obligatoire !"); return; }
 
         DossierInscription d = new DossierInscription(0);
-        d.setDateCreation(LocalDate.now().toString());
+        d.setDateCreation(LocalDate.now());
         d.setStatut("En attente");
         d.setMotivation(motivationArea.getText().trim());
         d.setRefEtudiant(etudiantCombo.getValue().getIdEtudiant());
@@ -175,11 +192,10 @@ public class DossierInscriptionController {
             chargerDonnees();
             viderFormulaire();
 
-            // Retour à l’espace secrétaire pour mise à jour stats
             try {
                 StartApplication.changeScene("accueil/Accueil");
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Erreur navigation : " + e.getMessage());
             }
         } else {
             afficherErreur("Erreur lors de la création du dossier.");
@@ -197,6 +213,7 @@ public class DossierInscriptionController {
         StartApplication.goBack();
     }
 
+    /** Recharge tous les dossiers et rafraîchit le compteur et l'horodatage de statut. */
     private void chargerDonnees() {
         dossiersList.setAll(dossierRepo.getTousDossiers());
         dossierTableView.setItems(dossiersList);

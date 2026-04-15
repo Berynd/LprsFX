@@ -13,6 +13,14 @@ import service.LogService;
 
 import java.io.IOException;
 
+/**
+ * Controller de la gestion des fournisseurs (FournisseurView.fxml).
+ *
+ * CRUD simple : ajouter, modifier, supprimer un fournisseur (nom + contact).
+ * La sélection d'une ligne remplit le formulaire et active Modifier/Supprimer.
+ * Les boutons inline ⟳/❌ dans la colonne Actions offrent les mêmes actions par ligne.
+ * Toutes les opérations sont journalisées via LogService.
+ */
 public class FournisseurController {
 
     @FXML private TextField nomTextField;

@@ -19,6 +19,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Controller de l'accueil dédié au professeur (AccueilProfesseurView.fxml).
+ *
+ * Variante de AccueilView réservée au rôle Professeur. Affiche :
+ *  - Le nom complet et le rôle de l'utilisateur connecté
+ *  - Une horloge temps réel (mise à jour toutes les secondes)
+ *  - Les statistiques personnelles du professeur (demandes et RDV filtrés sur son id)
+ *  - Des cartes de navigation vers ses modules (Fournitures, Demandes, RDV, Dossiers, EspaceProfesseur)
+ */
 public class AccueilProfesseurController {
 
     private final DemandeFournitureRepository demandeRepo = new DemandeFournitureRepository();
@@ -62,7 +71,7 @@ public class AccueilProfesseurController {
     }
 
     private void naviguerVers(String page) {
-        try { StartApplication.changeScene(page); } catch (IOException e) { e.printStackTrace(); }
+        try { StartApplication.changeScene(page); } catch (IOException e) { System.err.println("Erreur navigation : " + e.getMessage()); }
     }
 
     private void chargerStatistiques() {

@@ -12,6 +12,16 @@ import session.SessionUtilisateur;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller du tableau de bord du professeur (EspaceProfesseurView.fxml).
+ *
+ * Affiche les statistiques personnelles du professeur connecté :
+ *  - Nombre de demandes de fournitures (total, validées, refusées, en attente)
+ *  - Nombre de rendez-vous planifiés
+ *
+ * Toutes les statistiques sont filtrées sur l'id du professeur connecté
+ * (SessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur()).
+ */
 public class EspaceProfesseurController {
 
     private final DemandeFournitureRepository demandeRepo = new DemandeFournitureRepository();
@@ -40,7 +50,7 @@ public class EspaceProfesseurController {
     }
 
     private void naviguerVers(String page) {
-        try { StartApplication.changeScene(page); } catch (IOException e) { e.printStackTrace(); }
+        try { StartApplication.changeScene(page); } catch (IOException e) { System.err.println("Erreur navigation : " + e.getMessage()); }
     }
 
     private void chargerStatistiques() {

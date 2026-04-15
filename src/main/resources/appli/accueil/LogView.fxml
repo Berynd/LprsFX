@@ -4,38 +4,68 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="appli.accueil.LogController"
-            prefWidth="1000" prefHeight="600">
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="appli.accueil.LogController"
+      spacing="12"
+      maxHeight="Infinity" maxWidth="Infinity"
+      style="-fx-background-color: #f4f6f9;">
 
-    <children>
+    <padding>
+        <Insets top="16" right="20" bottom="16" left="20"/>
+    </padding>
 
-        <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10"
-              AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <Button text="← Retour" onAction="#handleRetour"
+                style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-size: 13px; -fx-cursor: hand; -fx-background-radius: 6;"/>
+        <Label text="Journal des activités"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="compteurLabel"
+               style="-fx-font-size: 13px; -fx-text-fill: #7f8c8d;"/>
+        <Button text="⟳ Actualiser" onAction="#handleActualiser"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 12px; -fx-cursor: hand; -fx-background-radius: 6;"/>
+    </HBox>
 
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Button text="← Retour" onAction="#handleRetour"
-                        style="-fx-background-color: #7f8c8d; -fx-text-fill: white;"/>
-                <Label text="Logs"
-                       style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-            </HBox>
+    <!-- Barre de recherche + filtres -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <TextField fx:id="rechercheField" promptText="🔍  Rechercher (utilisateur, message, action…)"
+                   onKeyReleased="#handleRecherche"
+                   style="-fx-font-size: 13px; -fx-background-radius: 6; -fx-border-radius: 6; -fx-border-color: #dcdde1; -fx-padding: 6 10 6 10;"
+                   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        <ComboBox fx:id="filtreActionCombo" promptText="Toutes les actions"
+                  onAction="#handleFiltreAction"
+                  style="-fx-font-size: 12px; -fx-background-radius: 6;" prefWidth="180"/>
+        <Button text="✕ Effacer" onAction="#handleEffacerFiltre"
+                style="-fx-background-color: #e0e0e0; -fx-text-fill: #555; -fx-font-size: 12px; -fx-cursor: hand; -fx-background-radius: 6;"/>
+    </HBox>
 
-            <TableView fx:id="logTable" VBox.vgrow="ALWAYS">
+    <!-- Tableau -->
+    <TableView fx:id="logTable" VBox.vgrow="ALWAYS"
+               style="-fx-background-color: white; -fx-border-color: #dcdde1; -fx-border-radius: 8; -fx-background-radius: 8;">
 
-                <columns>
-                    <TableColumn text="ID" fx:id="idColumn"/>
-                    <TableColumn text="Heure" fx:id="heureColumn"/>
-                    <TableColumn text="Utilisateur" fx:id="userColumn"/>
-                    <TableColumn text="Message" fx:id="messageColumn"/>
-                    <TableColumn text="Action" fx:id="actionColumn"/>
-                    <TableColumn text="Page" fx:id="pageColumn"/>
-                </columns>
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn" prefWidth="55" minWidth="45" maxWidth="65"
+                         style="-fx-alignment: CENTER;"/>
+            <TableColumn text="Date / Heure" fx:id="heureColumn" prefWidth="155" minWidth="140"/>
+            <TableColumn text="Utilisateur" fx:id="userColumn" prefWidth="160" minWidth="120"/>
+            <TableColumn text="Action" fx:id="actionColumn" prefWidth="130" minWidth="100"
+                         style="-fx-alignment: CENTER;"/>
+            <TableColumn text="Page" fx:id="pageColumn" prefWidth="160" minWidth="100"/>
+            <TableColumn text="Message" fx:id="messageColumn" prefWidth="400" minWidth="200"/>
+        </columns>
 
-            </TableView>
+        <placeholder>
+            <Label text="Aucun log trouvé."
+                   style="-fx-text-fill: #aaa; -fx-font-size: 14px;"/>
+        </placeholder>
 
-        </VBox>
+    </TableView>
 
-    </children>
+    <!-- Pied de page -->
+    <HBox alignment="CENTER_RIGHT">
+        <Label fx:id="statutLabel" style="-fx-font-size: 11px; -fx-text-fill: #aaa;"/>
+    </HBox>
 
-</AnchorPane>
+</VBox>

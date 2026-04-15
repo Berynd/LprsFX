@@ -14,6 +14,21 @@ import model.Utilisateur;
 import java.io.IOException;
 
 
+/**
+ * Controller de la page d'inscription d'un nouveau compte (InscriptionView.fxml).
+ *
+ * Permet à un utilisateur de créer son propre compte avec un rôle choisi parmi :
+ * Secrétaire, Professeur, Gestionnaire de stock (jamais Admin — sécurité).
+ *
+ * Validations effectuées :
+ *  - Tous les champs remplis
+ *  - Les deux mots de passe identiques
+ *  - Email non déjà utilisé en base
+ *
+ * Le mot de passe est toujours haché via BCrypt avant insertion.
+ * Après inscription réussie, une PauseTransition de 1,5 s donne un retour visuel
+ * avant la redirection vers la page de connexion.
+ */
 public class InscriptionController {
     private UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
 
@@ -84,7 +99,7 @@ public class InscriptionController {
             }
         } catch (Exception e) {
             erreur.setText("Erreur de vérification de l'email !");
-            e.printStackTrace();
+            System.err.println("Erreur vérification email : " + e.getMessage());
             return;
         }
 
@@ -94,7 +109,7 @@ public class InscriptionController {
             mdpHash = encoder.encode(mdpTexte.getText());
         } catch (Exception e) {
             erreur.setText("Erreur lors de l'encodage du mot de passe !");
-            e.printStackTrace();
+            System.err.println("Erreur encodage mot de passe : " + e.getMessage());
             return;
         }
 
@@ -117,16 +132,16 @@ public class InscriptionController {
                 try {
                     StartApplication.changeScene("accueil/Login");
                 } catch (IOException ex) {
-                    ex.printStackTrace();
                     erreur.setStyle("-fx-text-fill: red;");
                     erreur.setText("Erreur de redirection !");
+                    System.err.println("Erreur redirection post-inscription : " + ex.getMessage());
                 }
             });
             pause.play();
 
         } catch (Exception e) {
-            e.printStackTrace();
             erreur.setText("Erreur lors de l'inscription : " + e.getMessage());
+            System.err.println("Erreur inscription : " + e.getMessage());
         }
     }
 }

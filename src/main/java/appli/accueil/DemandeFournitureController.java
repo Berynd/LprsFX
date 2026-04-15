@@ -21,6 +21,20 @@ import session.SessionUtilisateur;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * Controller de la gestion des demandes de fournitures (DemandeFournitureView.fxml).
+ *
+ * Flux de création d'une demande :
+ *  1. Le professeur sélectionne des fournitures une par une (combo + quantité) → liste temporaire
+ *  2. Il saisit une raison puis clique "Envoyer" → crée la DemandeFourniture en BDD puis insère
+ *     les lignes dans la table de liaison (FournitureDemandeFourniture)
+ *
+ * Flux de validation (Gestionnaire/Admin) :
+ *  - Valider : décrémente le stock de chaque fourniture concernée puis passe le statut à "Validé"
+ *  - Refuser : demande une justification puis passe à "Refusé" (stock non modifié)
+ *
+ * Le statut est coloré : vert=Validé, rouge=Refusé, orange=En attente.
+ */
 public class DemandeFournitureController {
 
     // Formulaire de création
@@ -74,8 +88,10 @@ public class DemandeFournitureController {
         // Colonnes table
         idColumn.setCellValueFactory(c ->
             new javafx.beans.property.SimpleIntegerProperty(c.getValue().getIdDemandeFourniture()).asObject());
-        dateColumn.setCellValueFactory(c ->
-            new javafx.beans.property.SimpleStringProperty(c.getValue().getDate()));
+        dateColumn.setCellValueFactory(c -> {
+            java.time.LocalDate d = c.getValue().getDate();
+            return new javafx.beans.property.SimpleStringProperty(d != null ? d.toString() : "");
+        });
         raisonColumn.setCellValueFactory(c ->
             new javafx.beans.property.SimpleStringProperty(c.getValue().getRaison()));
         statutColumn.setCellValueFactory(c ->
@@ -171,6 +187,10 @@ public class DemandeFournitureController {
         });
     }
 
+    /**
+     * Ajoute la fourniture sélectionnée (avec sa quantité) à la liste temporaire.
+     * Format interne de chaque entrée : "libelle × qté|idFourniture|qté"
+     */
     @FXML
     private void handleAjouterFourniture() {
         Fourniture f = fournitureCombo.getValue();
@@ -195,13 +215,17 @@ public class DemandeFournitureController {
         if (idx >= 0) selectedFournitures.remove(idx);
     }
 
+    /**
+     * Soumet la demande : insère la DemandeFourniture puis les lignes de liaison.
+     * Vide ensuite la liste temporaire et recharge le tableau.
+     */
     @FXML
     private void handleEnvoyer() {
         if (raisonArea.getText().trim().isEmpty()) { afficherErreur("La raison est obligatoire !"); return; }
         if (selectedFournitures.isEmpty()) { afficherErreur("Ajoutez au moins une fourniture !"); return; }
 
         int idProf = SessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur();
-        DemandeFourniture d = new DemandeFourniture(LocalDate.now().toString(), "En attente", raisonArea.getText().trim(), idProf);
+        DemandeFourniture d = new DemandeFourniture(LocalDate.now(), "En attente", raisonArea.getText().trim(), idProf);
         int idDemande = demandeRepo.ajouterDemande(d);
         if (idDemande < 0) { afficherErreur("Erreur lors de la création de la demande."); return; }
 

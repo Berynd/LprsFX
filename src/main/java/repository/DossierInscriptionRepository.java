@@ -3,6 +3,7 @@ package repository;
 import model.DossierInscription;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class DossierInscriptionRepository extends BaseRepository {
     public int ajouterDossierInscription(DossierInscription d) {
         String sql = "INSERT INTO dossier_inscription (date_creation, motivation, statut, ref_filiere, ref_etudiant, ref_secretaire) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setString(1, d.getDateCreation());
+            stmt.setDate(1, Date.valueOf(d.getDateCreation()));
             stmt.setString(2, d.getMotivation());
             stmt.setString(3, d.getStatut());
             stmt.setInt(4, d.getRefFiliere());
@@ -83,7 +84,7 @@ public class DossierInscriptionRepository extends BaseRepository {
     public boolean modifierDossierInscription(DossierInscription d) {
         String sql = "UPDATE dossier_inscription SET date_creation=?, motivation=?, statut=?, ref_filiere=?, ref_etudiant=?, ref_secretaire=? WHERE id_dossier_inscription=?";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql)) {
-            stmt.setString(1, d.getDateCreation());
+            stmt.setDate(1, Date.valueOf(d.getDateCreation()));
             stmt.setString(2, d.getMotivation());
             stmt.setString(3, d.getStatut());
             stmt.setInt(4, d.getRefFiliere());
@@ -123,7 +124,8 @@ public class DossierInscriptionRepository extends BaseRepository {
 
     private DossierInscription map(ResultSet rs) throws SQLException {
         DossierInscription d = new DossierInscription(rs.getInt("id_dossier_inscription"));
-        d.setDateCreation(rs.getString("date_creation"));
+        Date dateCreation = rs.getDate("date_creation");
+        d.setDateCreation(dateCreation != null ? dateCreation.toLocalDate() : null);
         d.setMotivation(rs.getString("motivation"));
         d.setStatut(rs.getString("statut"));
         d.setRefFiliere(rs.getInt("ref_filiere"));

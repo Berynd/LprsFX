@@ -11,7 +11,7 @@ public class DemandeFournitureRepository extends BaseRepository {
     public int ajouterDemande(DemandeFourniture demande) {
         String sql = "INSERT INTO demande_fourniture (date, statut, raison, ref_professeur) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = getCnx().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setString(1, demande.getDate());
+            stmt.setDate(1, Date.valueOf(demande.getDate()));
             stmt.setString(2, demande.getStatut());
             stmt.setString(3, demande.getRaison());
             stmt.setInt(4, demande.getRefProfesseur());
@@ -127,7 +127,8 @@ public class DemandeFournitureRepository extends BaseRepository {
     private DemandeFourniture map(ResultSet rs) throws SQLException {
         DemandeFourniture d = new DemandeFourniture();
         d.setIdDemandeFourniture(rs.getInt("id_demande_fourniture"));
-        d.setDate(rs.getString("date"));
+        Date date = rs.getDate("date");
+        d.setDate(date != null ? date.toLocalDate() : null);
         d.setStatut(rs.getString("statut"));
         d.setRaison(rs.getString("raison"));
         d.setJustificationRefus(rs.getString("justification_refus"));

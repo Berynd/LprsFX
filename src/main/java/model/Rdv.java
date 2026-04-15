@@ -1,71 +1,46 @@
 package model;
 
+import java.time.LocalDate;
+
+/**
+ * Représente un rendez-vous entre un professeur et un étudiant dans une salle.
+ *
+ * Un créneau est défini par une date + une demi-journée ("Matin" ou "Après-midi").
+ * Avant de créer un RDV, il faut vérifier que la salle est disponible sur ce créneau
+ * via RdvRepository.isSalleDisponible().
+ */
 public class Rdv {
 
-    private int IdRdv;
-    private String date;
-    private String demiJournee;
-    private int RefEtudiant;
-    private int RefProfesseur;
-    private int RefSalle;
+    private int idRdv;
+    private LocalDate date;
+    private String demiJournee;  // "Matin" ou "Après-midi"
+    private int refEtudiant;     // clé étrangère vers l'étudiant
+    private int refProfesseur;   // clé étrangère vers l'utilisateur (rôle Professeur)
+    private int refSalle;        // clé étrangère vers la salle
 
-    public int getIdRdv() {
-        return IdRdv;
-    }
+    // --- Getters / Setters ---
 
-    public void setIdRdv(int idRdv) {
-        IdRdv = idRdv;
-    }
+    public int getIdRdv()                           { return idRdv; }
+    public void setIdRdv(int idRdv)                 { this.idRdv = idRdv; }
 
-    public int getRefSalle() {
-        return RefSalle;
-    }
+    public LocalDate getDate()                      { return date; }
+    public void setDate(LocalDate date)             { this.date = date; }
 
-    public void setRefSalle(int refSalle) {
-        RefSalle = refSalle;
-    }
+    public String getDemiJournee()                  { return demiJournee; }
+    public void setDemiJournee(String demiJournee)  { this.demiJournee = demiJournee; }
 
-    public int getRefProfesseur() {
-        return RefProfesseur;
-    }
+    public int getRefEtudiant()                     { return refEtudiant; }
+    public void setRefEtudiant(int refEtudiant)     { this.refEtudiant = refEtudiant; }
 
-    public void setRefProfesseur(int refProfesseur) {
-        RefProfesseur = refProfesseur;
-    }
+    public int getRefProfesseur()                   { return refProfesseur; }
+    public void setRefProfesseur(int refProfesseur) { this.refProfesseur = refProfesseur; }
 
-    public int getRefEtudiant() {
-        return RefEtudiant;
-    }
-
-    public void setRefEtudiant(int refEtudiant) {
-        RefEtudiant = refEtudiant;
-    }
-
-    public String getDemiJournee() {
-        return demiJournee;
-    }
-
-    public void setDemiJournee(String demiJournee) {
-        this.demiJournee = demiJournee;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
+    public int getRefSalle()                        { return refSalle; }
+    public void setRefSalle(int refSalle)           { this.refSalle = refSalle; }
 
     @Override
     public String toString() {
-        return "Rdv{" +
-                "IdRdv=" + IdRdv +
-                ", date='" + date + '\'' +
-                ", demiJournee='" + demiJournee + '\'' +
-                ", RefEtudiant=" + RefEtudiant +
-                ", RefProfesseur=" + RefProfesseur +
-                ", RefSalle=" + RefSalle +
-                '}';
+        return "Rdv{id=" + idRdv + ", date=" + date + ", demiJournee='" + demiJournee
+                + "', etudiant=" + refEtudiant + ", professeur=" + refProfesseur + ", salle=" + refSalle + '}';
     }
 }

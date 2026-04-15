@@ -15,6 +15,17 @@ import service.LogService;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * Controller de la gestion des fournitures (FournitureView.fxml).
+ *
+ * Fonctionnalités :
+ *  - CRUD complet : ajouter, modifier, supprimer une fourniture
+ *  - Gestion du stock : ajouterAuStock / retirerDuStock via des dialogues TextInput
+ *  - Alerte visuelle : colonne Stock colorée (rouge ≤10, orange ≤20, vert >20)
+ *  - Filtre "Stock faible" : affiche uniquement les fournitures avec stock ≤ 10
+ *  - Recherche par libellé
+ *  - Validation numérique temps réel sur le champ stock (caractères non-numériques rejetés)
+ */
 public class FournitureController {
 
     @FXML private TextField libelleTextField;
@@ -281,6 +292,7 @@ public class FournitureController {
         retirerStockRapide(fournitureSelectionnee);
     }
 
+    /** Ouvre une boîte de saisie pour entrer la quantité à ajouter au stock. */
     private void ajouterStockRapide(Fourniture fourniture) {
         TextInputDialog dialog = new TextInputDialog("10");
         dialog.setTitle("Ajouter au stock");
@@ -309,6 +321,11 @@ public class FournitureController {
         });
     }
 
+    /**
+     * Ouvre une boîte de saisie pour entrer la quantité à retirer du stock.
+     * L'opération échoue silencieusement si le stock est insuffisant (le repository
+     * inclut la garde AND stock_actuel >= ?).
+     */
     private void retirerStockRapide(Fourniture fourniture) {
         TextInputDialog dialog = new TextInputDialog("10");
         dialog.setTitle("Retirer du stock");
@@ -375,6 +392,7 @@ public class FournitureController {
         }
     }
 
+    /** Filtre le tableau pour n'afficher que les fournitures avec un stock ≤ 10. */
     @FXML
     private void handleStockFaible() {
         fournituresList.setAll(fournitureRepository.getFournituresEnRupture(10));

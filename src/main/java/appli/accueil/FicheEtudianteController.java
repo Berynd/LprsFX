@@ -13,6 +13,14 @@ import service.LogService;
 
 import java.io.IOException;
 
+/**
+ * Controller de la gestion des fiches étudiantes (FicheEtudianteView.fxml).
+ *
+ * Permet de créer, modifier, supprimer et rechercher des étudiants.
+ * Chaque ligne du tableau dispose de boutons d'action inline (éditer / supprimer).
+ * La sélection d'une ligne remplit le formulaire et active les boutons Modifier/Supprimer.
+ * Toutes les opérations sont journalisées via LogService.
+ */
 public class FicheEtudianteController {
 
     @FXML private TextField nomTextField;
@@ -38,13 +46,6 @@ public class FicheEtudianteController {
     @FXML private TableColumn<Etudiant, String> telephoneColumn;
     @FXML private TableColumn<Etudiant, Void> actionsColumn;
 
-<<<<<<< HEAD
-    @FXML
-    public void retour(ActionEvent actionEvent) throws IOException {
-        StartApplication.changeScene("accueil/Accueil");
-    }
-}
-=======
     private EtudiantRepository etudiantRepository;
     private ObservableList<Etudiant> etudiantsList;
     private Etudiant etudiantSelectionne;
@@ -53,6 +54,7 @@ public class FicheEtudianteController {
     public void initialize() {
         etudiantRepository = new EtudiantRepository();
         etudiantsList = FXCollections.observableArrayList();
+        // Configuration des colonnes et chargement initial des données
 
         idColumn.setCellValueFactory(c ->
             new javafx.beans.property.SimpleIntegerProperty(c.getValue().getIdEtudiant()).asObject());
@@ -78,6 +80,7 @@ public class FicheEtudianteController {
         });
     }
 
+    /** Injecte des boutons ✏/❌ dans la colonne Actions de chaque ligne. */
     private void ajouterBoutonsActions() {
         actionsColumn.setCellFactory(param -> new TableCell<>() {
             private final Button editBtn = new Button("✏");
@@ -103,6 +106,7 @@ public class FicheEtudianteController {
         });
     }
 
+    /** Crée un nouvel étudiant en base avec les valeurs du formulaire. */
     @FXML
     private void handleAjouter() {
         if (!validerFormulaire()) return;
@@ -127,6 +131,7 @@ public class FicheEtudianteController {
         }
     }
 
+    /** Sauvegarde les modifications du formulaire sur l'étudiant sélectionné. */
     @FXML
     private void handleModifier() {
         if (etudiantSelectionne == null) { afficherErreur("Sélectionnez un étudiant !"); return; }
@@ -155,6 +160,7 @@ public class FicheEtudianteController {
         confirmerSuppression(etudiantSelectionne);
     }
 
+    /** Affiche une boîte de confirmation avant de supprimer l'étudiant (et ses dossiers liés). */
     private void confirmerSuppression(Etudiant etudiant) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
@@ -206,6 +212,7 @@ public class FicheEtudianteController {
         StartApplication.goBack();
     }
 
+    /** Recharge tous les étudiants depuis la BDD et met à jour le tableau et le compteur. */
     private void chargerDonnees() {
         etudiantsList.setAll(etudiantRepository.getTousLesEtudiants());
         etudiantTableView.setItems(etudiantsList);
@@ -214,6 +221,7 @@ public class FicheEtudianteController {
             java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")));
     }
 
+    /** Copie les données de l'étudiant dans les champs du formulaire et désactive le bouton Ajouter. */
     private void remplirFormulaire(Etudiant e) {
         nomTextField.setText(e.getNom());
         prenomTextField.setText(e.getPrenom());
@@ -224,6 +232,7 @@ public class FicheEtudianteController {
         ajouterBtn.setDisable(true);
     }
 
+    /** Réinitialise le formulaire et remet les boutons dans leur état par défaut. */
     private void viderFormulaire() {
         nomTextField.clear(); prenomTextField.clear(); emailTextField.clear();
         telephoneTextField.clear(); adresseArea.clear(); diplomeTextField.clear();
@@ -257,4 +266,3 @@ public class FicheEtudianteController {
         messageLabel.setText("✅ " + msg);
     }
 }
->>>>>>> a40b54cd3bccd58e5e00a7fd6a38f7ad495de99b

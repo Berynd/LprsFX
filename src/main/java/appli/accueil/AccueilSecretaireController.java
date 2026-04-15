@@ -16,6 +16,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * Controller de l'accueil dédié à la secrétaire (AccueilSecretaireView.fxml).
+ *
+ * Variante de AccueilView réservée au rôle Secrétaire. Affiche :
+ *  - Le nom complet et le rôle de l'utilisateur connecté
+ *  - Une horloge temps réel (mise à jour toutes les secondes)
+ *  - Les statistiques dossiers (acceptés, refusés, en attente, total)
+ *  - Des cartes de navigation vers les modules autorisés pour ce rôle
+ */
 public class AccueilSecretaireController {
 
     private final DossierInscriptionRepository dossierRepo = new DossierInscriptionRepository();
@@ -56,7 +65,7 @@ public class AccueilSecretaireController {
     }
 
     private void naviguerVers(String page) {
-        try { StartApplication.changeScene(page); } catch (IOException e) { e.printStackTrace(); }
+        try { StartApplication.changeScene(page); } catch (IOException e) { System.err.println("Erreur navigation : " + e.getMessage()); }
     }
 
     private void chargerStatistiques() {

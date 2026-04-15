@@ -10,6 +10,13 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
+/**
+ * Controller du tableau de bord de la secrétaire (EspaceSecretaireView.fxml).
+ *
+ * Affiche des statistiques sur les dossiers d'inscription (acceptés, refusés,
+ * en attente, total) et propose des raccourcis vers les modules Étudiant et Dossier.
+ * Les données sont chargées une seule fois à l'initialisation.
+ */
 public class EspaceSecretaireController {
 
     private final DossierInscriptionRepository dossierRepo = new DossierInscriptionRepository();
@@ -69,7 +76,7 @@ public class EspaceSecretaireController {
         try {
             StartApplication.changeScene(page);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Erreur navigation : " + e.getMessage());
         }
     }
 

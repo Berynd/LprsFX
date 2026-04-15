@@ -21,6 +21,17 @@ import session.SessionUtilisateur;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller de la gestion des rendez-vous (RendezVousView.fxml).
+ *
+ * Permet de créer un RDV en choisissant une date (DatePicker), une demi-journée,
+ * un étudiant et une salle. Avant la création, la disponibilité de la salle sur
+ * le créneau est vérifiée via RdvRepository.isSalleDisponible().
+ *
+ * Visibilité filtrée par rôle :
+ *  - Professeur : ne voit que ses propres RDV (filtre sur idProfesseur)
+ *  - Admin/autres : voient tous les RDV
+ */
 public class RendezVousController {
 
     @FXML private DatePicker datePicker;
@@ -81,8 +92,10 @@ public class RendezVousController {
         // Colonnes
         idColumn.setCellValueFactory(c ->
             new javafx.beans.property.SimpleIntegerProperty(c.getValue().getIdRdv()).asObject());
-        dateColumn.setCellValueFactory(c ->
-            new javafx.beans.property.SimpleStringProperty(c.getValue().getDate()));
+        dateColumn.setCellValueFactory(c -> {
+            java.time.LocalDate d = c.getValue().getDate();
+            return new javafx.beans.property.SimpleStringProperty(d != null ? d.toString() : "");
+        });
         demiJourneeColumn.setCellValueFactory(c ->
             new javafx.beans.property.SimpleStringProperty(c.getValue().getDemiJournee()));
         etudiantColumn.setCellValueFactory(c -> {
@@ -123,13 +136,14 @@ public class RendezVousController {
         });
     }
 
+    /** Vérifie si la salle sélectionnée est libre sur la date et la demi-journée choisies. */
     @FXML
     private void handleVerifierDispo() {
         if (datePicker.getValue() == null || demiJourneeCombo.getValue() == null || salleCombo.getValue() == null) {
             afficherErreur("Sélectionnez une date, une demi-journée et une salle pour vérifier !");
             return;
         }
-        String date = datePicker.getValue().toString();
+        java.time.LocalDate date = datePicker.getValue();
         String demi = demiJourneeCombo.getValue();
         Salle salle = salleCombo.getValue();
         boolean dispo = rdvRepo.isSalleDisponible(salle.getIdSalle(), date, demi);
@@ -140,6 +154,7 @@ public class RendezVousController {
         }
     }
 
+    /** Crée le RDV après avoir re-vérifié la disponibilité de la salle. */
     @FXML
     private void handleAjouter() {
         if (datePicker.getValue() == null) { afficherErreur("Sélectionnez une date !"); return; }
@@ -147,7 +162,7 @@ public class RendezVousController {
         if (etudiantCombo.getValue() == null) { afficherErreur("Sélectionnez un étudiant !"); return; }
         if (salleCombo.getValue() == null) { afficherErreur("Sélectionnez une salle !"); return; }
 
-        String date = datePicker.getValue().toString();
+        java.time.LocalDate date = datePicker.getValue();
         String demi = demiJourneeCombo.getValue();
         Salle salle = salleCombo.getValue();
 
@@ -185,6 +200,10 @@ public class RendezVousController {
         StartApplication.goBack();
     }
 
+    /**
+     * Charge les RDV depuis la BDD selon le rôle connecté.
+     * Un Professeur ne voit que ses propres RDV ; les autres rôles voient tout.
+     */
     private void chargerDonnees() {
         int idUser = SessionUtilisateur.getInstance().getUtilisateurConnecte().getIdUtilisateur();
         String role = SessionUtilisateur.getInstance().getRole();

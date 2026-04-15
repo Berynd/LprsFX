@@ -1,85 +1,55 @@
 package model;
 
+import java.time.LocalDate;
+
+/**
+ * Représente la demande d'inscription d'un étudiant dans une filière.
+ *
+ * Cycle de vie du statut : "En attente" → "Validé" ou "Refusé".
+ * Un dossier est créé par la secrétaire et rattaché à un étudiant, une filière
+ * et la secrétaire qui l'a saisi.
+ */
 public class DossierInscription {
 
-    private int IdDossierInscription;
-    private String dateCreation;
-    private String motivation;
-    private String statut;
-    private int RefFiliere;
-    private int RefEtudiant;
-    private int RefSecretaire;
+    private int idDossierInscription;
+    private LocalDate dateCreation;
+    private String motivation;   // lettre de motivation de l'étudiant
+    private String statut;       // "En attente", "Validé", "Refusé"
+    private int refFiliere;      // clé étrangère vers la filière visée
+    private int refEtudiant;     // clé étrangère vers l'étudiant concerné
+    private int refSecretaire;   // clé étrangère vers la secrétaire qui a saisi le dossier
 
+    /** Constructeur minimal utilisé lors de la lecture en base (id uniquement). */
     public DossierInscription(int idDossierInscription) {
-        IdDossierInscription = idDossierInscription;
+        this.idDossierInscription = idDossierInscription;
     }
 
-    public int getIdDossierInscription() {
-        return IdDossierInscription;
-    }
+    // --- Getters / Setters ---
 
-    public void setIdDossierInscription(int idDossierInscription) {
-        IdDossierInscription = idDossierInscription;
-    }
+    public int getIdDossierInscription()                        { return idDossierInscription; }
+    public void setIdDossierInscription(int id)                 { this.idDossierInscription = id; }
 
-    public String getDateCreation() {
-        return dateCreation;
-    }
+    public LocalDate getDateCreation()                          { return dateCreation; }
+    public void setDateCreation(LocalDate dateCreation)         { this.dateCreation = dateCreation; }
 
-    public void setDateCreation(String dateCreation) {
-        this.dateCreation = dateCreation;
-    }
+    public String getMotivation()                               { return motivation; }
+    public void setMotivation(String motivation)                { this.motivation = motivation; }
 
-    public String getMotivation() {
-        return motivation;
-    }
+    public String getStatut()                                   { return statut; }
+    public void setStatut(String statut)                        { this.statut = statut; }
 
-    public void setMotivation(String motivation) {
-        this.motivation = motivation;
-    }
+    public int getRefFiliere()                                  { return refFiliere; }
+    public void setRefFiliere(int refFiliere)                   { this.refFiliere = refFiliere; }
 
-    public String getStatut() {
-        return statut;
-    }
+    public int getRefEtudiant()                                 { return refEtudiant; }
+    public void setRefEtudiant(int refEtudiant)                 { this.refEtudiant = refEtudiant; }
 
-    public void setStatut(String statut) {
-        this.statut = statut;
-    }
-
-    public int getRefFiliere() {
-        return RefFiliere;
-    }
-
-    public void setRefFiliere(int refFiliere) {
-        RefFiliere = refFiliere;
-    }
-
-    public int getRefEtudiant() {
-        return RefEtudiant;
-    }
-
-    public void setRefEtudiant(int refEtudiant) {
-        RefEtudiant = refEtudiant;
-    }
-
-    public int getRefSecretaire() {
-        return RefSecretaire;
-    }
-
-    public void setRefSecretaire(int refSecretaire) {
-        RefSecretaire = refSecretaire;
-    }
+    public int getRefSecretaire()                               { return refSecretaire; }
+    public void setRefSecretaire(int refSecretaire)             { this.refSecretaire = refSecretaire; }
 
     @Override
     public String toString() {
-        return "DossierInscription{" +
-                "IdDossierInscription=" + IdDossierInscription +
-                ", dateCreation='" + dateCreation + '\'' +
-                ", motivation='" + motivation + '\'' +
-                ", statut='" + statut + '\'' +
-                ", RefFiliere=" + RefFiliere +
-                ", RefEtudiant=" + RefEtudiant +
-                ", RefSecretaire=" + RefSecretaire +
-                '}';
+        return "DossierInscription{id=" + idDossierInscription + ", date=" + dateCreation
+                + ", statut='" + statut + "', etudiant=" + refEtudiant + ", filiere=" + refFiliere + '}';
     }
 }

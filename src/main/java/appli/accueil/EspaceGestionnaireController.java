@@ -11,6 +11,18 @@ import repository.FournitureRepository;
 
 import java.io.IOException;
 
+/**
+ * Controller du tableau de bord du gestionnaire de stock (EspaceGestionnaireView.fxml).
+ *
+ * Affiche un résumé de l'état du stock :
+ *  - Nombre total de fournitures
+ *  - Nombre de fournitures en rupture (stock ≤ 5)
+ *  - Nombre de demandes en attente de traitement
+ *  - Nombre total de fournisseurs
+ *
+ * Les données sont chargées à l'initialisation et des raccourcis permettent
+ * de naviguer directement vers les modules Fournisseurs, Fournitures et Demandes.
+ */
 public class EspaceGestionnaireController {
 
     private final FournitureRepository fournitureRepo     = new FournitureRepository();
@@ -38,7 +50,7 @@ public class EspaceGestionnaireController {
     }
 
     private void naviguerVers(String page) {
-        try { StartApplication.changeScene(page); } catch (IOException e) { e.printStackTrace(); }
+        try { StartApplication.changeScene(page); } catch (IOException e) { System.err.println("Erreur navigation : " + e.getMessage()); }
     }
 
     private void chargerStatistiques() {

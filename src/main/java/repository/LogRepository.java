@@ -1,21 +1,23 @@
 package repository;
 
-<<<<<<< HEAD
-public class LogRepository {
-}
-
-
-//TODO faire un bibliotheque avec les differents message d'erreur
-=======
 import model.Log;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Repository gérant la persistance des logs d'activité.
+ *
+ * Utilisé exclusivement par LogService. Les logs sont triés du plus récent
+ * au plus ancien pour affichage dans LogView.
+ */
 public class LogRepository extends BaseRepository {
 
+    /**
+     * Insère un nouveau log en base.
+     * Appelé automatiquement par LogService après chaque action significative.
+     */
     public void enregistrer(Log log) {
         String sql = "INSERT INTO log (date_log, nom_utilisateur, message, action, page) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = getCnx().prepareStatement(sql)) {
@@ -30,6 +32,10 @@ public class LogRepository extends BaseRepository {
         }
     }
 
+    /**
+     * Retourne tous les logs triés du plus récent au plus ancien.
+     * Utilisé par LogController pour afficher le journal complet.
+     */
     public List<Log> getTousLesLogs() {
         List<Log> logs = new ArrayList<>();
         String sql = "SELECT * FROM log ORDER BY date_log DESC";
@@ -51,4 +57,3 @@ public class LogRepository extends BaseRepository {
         return logs;
     }
 }
->>>>>>> a40b54cd3bccd58e5e00a7fd6a38f7ad495de99b
